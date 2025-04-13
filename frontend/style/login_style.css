@@ -1,0 +1,25 @@
+body {
+    background-color: #f9f6ee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login {
+    height: 30%;
+    width: 65%;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    height: 4vh;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+}
