@@ -1,0 +1,14 @@
+.modulname{
+    color: black;
+}
+
+.bewertungstext{
+    color: black;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: grey;
+    border-width: 2px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
