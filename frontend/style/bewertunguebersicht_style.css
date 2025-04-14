@@ -9,6 +9,11 @@
     border-color: grey;
     border-width: 2px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.profilepicture{
+    width: 30px;
+    height: 30px;
 }
 
