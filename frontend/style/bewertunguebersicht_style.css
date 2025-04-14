@@ -1,0 +1,25 @@
+.bewertungsliste{
+    color: black;
+}
+
+.bewertungstext{
+    border-style: solid;
+    border-radius: 10px;
+    border-color: grey;
+    border-width: 2px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.profilepicture{
+    width: 30px;
+    height: 30px;
+}
+
+.ueberschrift{
+    text-align: center;
+    color: black;
+    margin: 10px;
+}
+
+
