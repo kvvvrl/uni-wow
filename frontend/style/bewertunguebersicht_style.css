@@ -1,9 +1,8 @@
-.modulname{
+.bewertungsliste{
     color: black;
 }
 
 .bewertungstext{
-    color: black;
     border-style: solid;
     border-radius: 10px;
     border-color: grey;
@@ -16,4 +15,5 @@
     width: 30px;
     height: 30px;
 }
+
 
