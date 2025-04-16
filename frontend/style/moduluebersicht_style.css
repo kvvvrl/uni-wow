@@ -1,6 +1,43 @@
-.modul {
-    background: #f9f6ee;
+.modul-bestanden {
+    background: lightgreen;
     height: 20vh;
     border: 2px solid lightgray;
     border-radius: 5px;
+    padding: 1vh;
+    margin: 0.5vh;
+}
+
+.modul-durchfall {
+    background: lightcoral;
+    height: 20vh;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 1vh;
+    margin: 0.5vh;
+}
+
+.modul {
+    background: lightgrey;
+    height: 20vh;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 1vh;
+    margin: 0.5vh;
+}
+
+.inhalt a {
+    text-decoration: none;
+    color: grey;
+}
+
+.modul-bewertung {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.beschreibung-note {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
