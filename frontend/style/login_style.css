@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.login {
+main {
     height: 30%;
     width: 65%;
     border: 2px solid lightgray;

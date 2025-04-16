@@ -60,7 +60,7 @@ body {
 }
 
 /*INHALT*/
-.inhalt {
+main {
     flex: 1 0 auto;
     min-height: 0;
     flex-grow: 1;
