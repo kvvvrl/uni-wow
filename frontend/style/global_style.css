@@ -66,3 +66,9 @@ footer a {
     right: 0;
     text-align: right;
 }
+
+.ueberschrift{
+    text-align: center;
+    color: black;
+    margin: 10px;
+}
