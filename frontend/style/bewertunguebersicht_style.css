@@ -2,7 +2,13 @@
     color: black;
 }
 
-.bewertungstext{
+.bewertungsliste{
+    margin: 20px;
+}
+.bewertungsfeld{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border-style: solid;
     border-radius: 10px;
     border-color: grey;

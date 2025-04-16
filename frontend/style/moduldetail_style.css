@@ -1,0 +1,50 @@
+h3 {
+    margin-bottom: 0;
+}
+p {
+    margin-top: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.inhalt {
+    display: flex;
+    flex-direction: row;
+    padding: 2vh;
+}
+
+.inhalt  > * {
+    flex: 1 1 0;
+}
+
+.modul-bewertung {
+    display: flex;
+    flex-direction: column;
+}
+hr {
+    border-color: grey;
+    width: 100%;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10vh;
+    flex-grow: 1;
+    justify-content: start;
+}
+
+textarea {
+    border-radius: 5px;
+    width: 100%;
+}
+
+button {
+    height: 5vh;
+    background-color: lightgray;
+}
+button:hover {
+    background-color: #a2c8a2;
+}

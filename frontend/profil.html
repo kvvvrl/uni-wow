@@ -17,12 +17,29 @@
         </ul>
       </nav>
     </header>
+  <section class="content">
     <section>
       <h1 class="ueberschrift">Profil</h1>
+      <img class="picture" src="pictures/dummy.jpg" />
+      <section>
+        <section class="field">
+          <input type="text" id="pvname" name="vname" placeholder="Vorname">
+          <input type="text" id="pnname" name="fname" placeholder="Nachname">
+        </section>
+      </section>
+      <section class="field">
+        <input type="number" id="pmnummer" name="mnummer" readonly placeholder="Matrikelnummer" disabled>
+      </section>
     </section>
-    <footer>
-      <h4>Webanwendungen 2 - Praktikum<br />Backend Boys</h4>
-      <a href="impressum.html">Impressum</a>
-    </footer>
-  </body>
+    <section> Notenschnitt: 4,0</section>
+    <section> ECTS: 2</section>
+    <section>
+      <input type="submit" value="Speichern" onclick="alert('Änderung gespeichert!')">
+    </section>
+  </section>
+  <footer>
+    <h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
+    <a href="impressum.html">Impressum</a>
+  </footer>
+</body>
 </html>
