@@ -1,35 +1,55 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0%;  
+}
+
 html, body {
     height: 100%;
 }
 /*NAVBAR*/
 nav {
-    padding-top: 0.5rem;
-}
-ul {
-    list-style-type: none;
-    margin: 0 0.5rem;
-    padding: 0;
-    background-color: #f1f1f1;
-    display: flex;
-    align-items: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     height: 5rem;
+
+}
+nav ul {
+    display: flex;
+    padding: 0;
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
-li {
+nav li {
     display: inline;
     flex-grow: 1;
     border: 1px solid black;
-    border-radius: 5px;
     height: 100%;
     text-align: center;
-    align-content: center;
 }
-li:hover {
-    background-color: #a8a7a7;
+nav li:hover {
+    border-color: white;
+    background-color: #5e5e5e;
 }
 
-li a {
+nav li a {
+    display: block;
+    width: 100%;  /*Damit alles angeklick werden kann*/
+    height: 100%;
+    text-align: center1;
+    line-height: 5rem;
     text-decoration: none;
+    color: #fff;
+}
+
+.navblock3{
+    margin-right: 30%;
 }
 
 /*BODY*/
@@ -37,34 +57,38 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
-    background-color: #f9f6ee;
 }
 
 /*INHALT*/
 .inhalt {
     flex: 1 0 auto;
     min-height: 0;
-    background-color: darkgrey;
     flex-grow: 1;
 }
 
 /*FOOTER*/
 footer {
+    color: #fff;
     flex-shrink: 0;
     width: 100%;
-    height: 6rem;
-    background-color: lightgray;
+    background-color: #000;
+    height: 5rem;
 }
 
 footer h4 {
-    text-align: right;
+    text-align: center;
     padding-right: 1rem;
 }
 
 footer a {
     display: block;
     right: 0;
-    text-align: right;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #d6d6d6;
 }
 
 .ueberschrift{
