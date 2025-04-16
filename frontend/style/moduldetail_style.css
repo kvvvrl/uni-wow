@@ -48,3 +48,7 @@ button {
 button:hover {
     background-color: #a2c8a2;
 }
+
+.ueberschrift {
+    margin: 1vh;
+}
