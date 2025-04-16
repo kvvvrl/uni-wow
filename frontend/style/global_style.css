@@ -3,16 +3,16 @@ html, body {
 }
 /*NAVBAR*/
 nav {
-    padding-top: 0.5rem;
+    padding-top: 0.5vh;
 }
 ul {
     list-style-type: none;
-    margin: 0 0.5rem;
+    margin: 0 0.5vh;
     padding: 0;
     background-color: #f1f1f1;
     display: flex;
     align-items: center;
-    height: 5rem;
+    height: 5vh;
 }
 
 li {
@@ -37,14 +37,13 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
-    background-color: #f9f6ee;
 }
 
 /*INHALT*/
 .inhalt {
     flex: 1 0 auto;
     min-height: 0;
-    background-color: darkgrey;
+    background-color: #ffffff;
     flex-grow: 1;
 }
 

@@ -1,26 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <link rel="stylesheet" type='text/css'  href="../style/global_style.css">
-    <link rel="stylesheet" type='text/css'  href="../style/moduldetail_style.css">
-    <title>Uni-WOW</title>
+	<meta charset='utf-8'>
+	<link rel="stylesheet" type='text/css' href="../style/global_style.css">
+	<link rel="stylesheet" type='text/css' href="../style/moduldetail_style.css">
+	<title>Uni-WOW</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="../startseite.html">Startseite</a></li>
-            <li><a href="moduluebersicht.html">Modul&uuml;bersicht</a></li>
-            <li><a href="bewertungsuebersicht.html">Bewertungs&uuml;bersicht</a></li>
-            <li><a href="profil.html">Profil</a></li>
-        </ul>
-    </nav>
-    <section>
-        <h1>MODUL 2</h1>
-    </section>
-    <footer>
-        <h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
-        <a href="impressum.html">Impressum</a>
-    </footer>
-    </body>
+<nav>
+	<ul>
+		<li><a href="../startseite.html">Startseite</a></li>
+		<li><a href="../moduluebersicht.html">Modul&uuml;bersicht</a></li>
+		<li><a href="../bewertungsuebersicht.html">Bewertungs&uuml;bersicht</a></li>
+		<li><a href="../profil.html">Profil</a></li>
+	</ul>
+</nav>
+<h1 class="ueberschrift">Webanwendungen</h1>
+<section class="inhalt">
+	<section class="modul-info">
+		<h3>Modulverantwortlicher:</h3>
+		<p>Prof. Dr. German Nemirovski</p>
+		<h3>Workload:</h3>
+		<p>150 h</p>
+		<h3>Credits:</h3>
+		<p>5 ECTS</p>
+		<h3>Lernergebnisse:</h3>
+		<p>Die Studierenden verstehen eingesetzte Methoden und Technologien zur Umsetzung von WebAnwendungen und ihrer Sicherheit.</p>
+		<h3>Inhalte:</h3>
+		<p>
+			HTML, CSS, JavaScript, JQuery, NodeJS, Express, HTTPS, Asynchrone Client-Server Kommunikation,
+			REST-Services, gängige Schwachstellen in Web-Anwendungen und wie diese ausgenutzt werden
+			können
+		</p>
+		<h3>Prüfungsform:</h3>
+		<p>Klausur 90 Minuten, benotet / Referat (in der Regel 25 min.), unbenotet</p>
+	</section>
+	<section class="modul-bewertung">
+		<form class="fields">
+			<section>
+				<h3><label for="note">Note:</label></h3>
+				<input type="number" max="5" min="1" step="0.1" id="note">
+			</section>
+			<section class="bewertung">
+				<h3><label for="bewertung">Bewertung:</label></h3>
+				<textarea id="bewertung" rows="10" cols="30"></textarea>
+				<button type="submit">Eingaben speichern</button>
+			</section>
+		</form>
+	</section>
+</section>
+<footer>
+	<h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
+	<a href="impressum.html">Impressum</a>
+</footer>
+</body>
 </html>
