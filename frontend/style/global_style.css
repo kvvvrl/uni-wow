@@ -73,17 +73,12 @@ footer {
     width: 100%;
     background-color: #000;
     height: 5rem;
-}
-
-footer h4 {
     text-align: center;
-    padding-right: 1rem;
 }
 
 footer a {
     display: block;
     right: 0;
-    text-align: center;
     color: #fff;
     text-decoration: none;
 }
