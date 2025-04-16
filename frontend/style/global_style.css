@@ -42,7 +42,7 @@ nav li a {
     display: block;
     width: 100%;  /*Damit alles angeklick werden kann*/
     height: 100%;
-    text-align: center1;
+    text-align: center;
     line-height: 5rem;
     text-decoration: none;
     color: #fff;
@@ -84,10 +84,4 @@ footer a {
 }
 footer a:hover {
     color: #d6d6d6;
-}
-
-.ueberschrift{
-    text-align: center;
-    color: black;
-    margin: 10px;
 }

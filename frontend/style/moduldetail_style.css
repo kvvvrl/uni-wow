@@ -9,13 +9,13 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.inhalt {
+main {
     display: flex;
     flex-direction: row;
     padding: 2vh;
 }
 
-.inhalt  > * {
+main  > * {
     flex: 1 1 0;
 }
 
