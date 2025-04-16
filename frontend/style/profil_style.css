@@ -1,0 +1,60 @@
+.field {
+    display: flex;
+}
+  
+.picture{
+    width: 200px;
+    height: 200px;
+}
+
+.content{
+    padding:5px;
+}
+
+input{
+    border-style: solid;
+    border-radius: 10px;
+    border-color: grey;
+    border-width: 2px;
+    padding: 10px;
+    margin-bottom: 5x;
+    margin-top: 5px;
+}
+
+input[type="text"] {
+  width: 50%;
+  box-sizing: border-box;
+}
+
+input[type="number"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#pvname{
+    margin-right: 5px;
+}
+#pnname{
+    margin-left: 5px;
+}
+
+input:disabled {
+  background-color:darkgrey;
+  color: #999999;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+
