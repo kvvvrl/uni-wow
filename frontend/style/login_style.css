@@ -1,14 +1,8 @@
 body {
-    background-color: #f9f6ee;
+    background-color: #FFF;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-main {
-    height: 30%;
-    width: 65%;
-    border: 2px solid lightgray;
-    border-radius: 5px;
 }
 
 form {
@@ -20,6 +14,14 @@ input {
     height: 4vh;
     width: 100%;
     padding: 0;
-    border: none;
+    border: 1px solid black;
     border-radius: 5px;
+}
+
+button {
+    margin-top: 2vh;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }

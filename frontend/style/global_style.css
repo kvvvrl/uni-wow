@@ -86,3 +86,7 @@ footer a {
 footer a:hover {
     color: #d6d6d6;
 }
+
+.ueberschrift {
+    margin: 1vh;
+}
