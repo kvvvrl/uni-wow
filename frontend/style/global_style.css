@@ -8,19 +8,20 @@ html, body {
 }
 /*NAVBAR*/
 nav {
-    background-color: #000;
-    color: #fff;
-    font-size: 30px;
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    
+    /*background-color: #0000009d;*/
+    background-color: #0000009d;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    height: 5rem;
-
+    font-weight: 500;
 }
 nav ul {
     display: flex;
-    padding: 0;
-    background-color: #000;
     align-items: center;
     justify-content: center;
     align-items: center;
@@ -29,23 +30,35 @@ nav ul {
 nav li {
     display: inline;
     flex-grow: 1;
-    border: 1px solid black;
     height: 100%;
     text-align: center;
 }
-nav li:hover {
-    border-color: white;
-    background-color: #5e5e5e;
+nav li a:hover {
+    color: #7e7d7d73;
 }
 
 nav li a {
     display: block;
-    width: 100%;  /*Damit alles angeklick werden kann*/
-    height: 100%;
     text-align: center;
-    line-height: 5rem;
+    line-height: 3rem;
     text-decoration: none;
     color: #fff;
+}
+.navblock1 {
+    display: flex; /* Flexbox aktivieren */
+    justify-content: center; /* Zentriert das Icon horizontal */
+    align-items: center; /* Zentriert das Icon vertikal */
+    width: 4vh; /* Breite des Containers */
+    height: 4vh; /* Höhe des Containers */
+    margin-right: 33%;
+    margin-left: 1vh;
+}
+
+.navblock1 img {
+    max-width: 100%;
+    max-height: 100%; 
+    width: auto;
+    height: auto; 
 }
 
 .navblock3{
@@ -61,6 +74,7 @@ body {
 
 /*INHALT*/
 main {
+    margin-top: 3rem;
     flex: 1 0 auto;
     min-height: 0;
     flex-grow: 1;
