@@ -14,8 +14,12 @@ nav {
     top: 0;
     z-index: 1000;
     
-    /*background-color: #0000009d;*/
-    background-color: #0000009d;
+    /*background-color: #0000009d;
+    Transition der navbar
+    */
+    background-color: #000;
+    transition: background-color 0.1 ease;
+
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -34,7 +38,7 @@ nav li {
     text-align: center;
 }
 nav li a:hover {
-    color: #7e7d7d73;
+    opacity: 0.6;
 }
 
 nav li a {
@@ -45,20 +49,25 @@ nav li a {
     color: #fff;
 }
 .navblock1 {
-    display: flex; /* Flexbox aktivieren */
-    justify-content: center; /* Zentriert das Icon horizontal */
-    align-items: center; /* Zentriert das Icon vertikal */
-    width: 4vh; /* Breite des Containers */
-    height: 4vh; /* Höhe des Containers */
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 4vh;
+    height: 4vh;
     margin-right: 33%;
     margin-left: 1vh;
 }
-
+/* Icon Navbar*/
 .navblock1 img {
-    max-width: 100%;
-    max-height: 100%; 
-    width: auto;
-    height: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4vh;
+    height: 4vh;
+}
+
+.navblock1 img:hover{
+    opacity: 0.6;
 }
 
 .navblock3{
