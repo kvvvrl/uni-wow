@@ -1,16 +1,16 @@
 .modul-bestanden {
-    background: lightgreen;
+    background: rgba(144, 238, 144, 0.7);
     height: 20vh;
-    border: 2px solid lightgray;
+    border: 2px solid grey;
     border-radius: 5px;
     padding: 1vh;
     margin: 0.5vh;
 }
 
 .modul-durchfall {
-    background: lightcoral;
+    background: rgba(240, 128, 128, 0.44);
     height: 20vh;
-    border: 2px solid lightgray;
+    border: 2px solid grey;
     border-radius: 5px;
     padding: 1vh;
     margin: 0.5vh;
@@ -19,7 +19,7 @@
 .modul {
     background: lightgrey;
     height: 20vh;
-    border: 2px solid lightgray;
+    border: 2px solid grey;
     border-radius: 5px;
     padding: 1vh;
     margin: 0.5vh;
@@ -40,4 +40,12 @@ main a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+hr {
+    margin-bottom: 2vh;
+}
+
+h3 {
+    white-space: nowrap;
 }
