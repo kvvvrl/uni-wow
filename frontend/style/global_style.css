@@ -17,7 +17,7 @@ nav {
     /*background-color: #0000009d;
     Transition der navbar
     */
-    background-color: #000;
+    background-color: rgba(54, 54, 54, 1);
     transition: background-color 0.1 ease;
 
     font-size: 20px;
