@@ -18,7 +18,7 @@ nav {
     Transition der navbar
     */
     background-color: rgba(54, 54, 54, 1);
-    transition: background-color 0.1 ease;
+    transition: background-color 0.3 ease;
 
     font-size: 20px;
     font-style: normal;
@@ -46,7 +46,9 @@ nav li a {
     text-align: center;
     line-height: 3rem;
     text-decoration: none;
-    color: #fff;
+    color: rgba(255, 255, 255, 1);
+    transition: color 0.3 ease;
+
 }
 .navblock1 {
     display: flex;
