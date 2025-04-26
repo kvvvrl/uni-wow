@@ -3,10 +3,11 @@
 <head>
 	<meta charset='utf-8'>
 	<!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <!---------------->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		  rel="stylesheet">
+	<!---------------->
 	<link rel="stylesheet" type='text/css' href="../style/global_style.css">
 	<link rel="stylesheet" type='text/css' href="../style/moduldetail_style.css">
 	<title>Uni-WOW</title>
@@ -26,50 +27,95 @@
 </header>
 <h1 class="ueberschrift">Angewandte Mathematik 1</h1>
 <main>
-	<section class="modul-info">
-		<h3>Modulverantwortlicher:</h3>
-		<p>Prof. Dr. Andreas Knoblauch</p>
-		<h3>Workload:</h3>
-		<p>75 h</p>
-		<h3>Credits:</h3>
-		<p>2,5 ECTS</p>
-		<h3>Lernergebnisse:</h3>
-		<p>
-			Breite und tiefe Kenntnisse der grundlegenden signal- und systemtheoretischen Begriffe, Konzepte
-			und Verfahren, insbesondere &uuml;ber die mathematische Beschreibung diskreter und kontinuierlicher
-			Signale sowie diskreter Systeme im Zeitbereich und Frequenz- bzw. z-Bereich
-		</p>
-		<h3>Inhalte:</h3>
-		<p>
-			<u>Diskrete Signale:</u>Energie, Leistung, Korrelation, Faltungsoperation<br>
-			<u>z-Transformation:</u> Definition, Eigenschaften, und Transformationen elementarer Signale, Inverse
-			z-Transformation, Partialbruchzerlegung<br>
-			<u>Diskrete lineare zeitinvariante Systeme:</u> Zustandsraumbeschreibung, Differenzengleichungen,
-			Blockdiagramme, &uuml;bertragungsfunktion, Impulsantwort, Stabilit&auml;t, Verschaltungsregeln<br>
-			<u>Kontinuierliche Signale:</u> Energie, Leistung, Korrelation, Faltungsoperation, Dirac- Stoß,
-			Sprung-Funktion, wichtige Signalformen<br>
-			<u>Fourier-Analyse:</u>: Fourier-Reihenentwicklung periodischer Signale, Polarform, komplexe Fourier-Reihe,
-			FourierTransformation, Eigenschaften der Fourier- Transformation<br>
-			Matlab Beispiele
-		</p>
-		<h3>Pr&uuml;fungsform:</h3>
-		<p>Klausur 60 Minuten, benotet</p>
+	<section class="modul">
+		<section class="modul-info">
+			<h3>Modulverantwortlicher:</h3>
+			<p>Prof. Dr. Andreas Knoblauch</p>
+			<h3>Workload:</h3>
+			<p>75 h</p>
+			<h3>Credits:</h3>
+			<p>2,5 ECTS</p>
+			<h3>Lernergebnisse:</h3>
+			<p>
+				Breite und tiefe Kenntnisse der grundlegenden signal- und systemtheoretischen Begriffe, Konzepte
+				und Verfahren, insbesondere &uuml;ber die mathematische Beschreibung diskreter und kontinuierlicher
+				Signale sowie diskreter Systeme im Zeitbereich und Frequenz- bzw. z-Bereich
+			</p>
+			<h3>Inhalte:</h3>
+			<p>
+				<u>Diskrete Signale:</u>Energie, Leistung, Korrelation, Faltungsoperation<br>
+				<u>z-Transformation:</u> Definition, Eigenschaften, und Transformationen elementarer Signale, Inverse
+				z-Transformation, Partialbruchzerlegung<br>
+				<u>Diskrete lineare zeitinvariante Systeme:</u> Zustandsraumbeschreibung, Differenzengleichungen,
+				Blockdiagramme, &uuml;bertragungsfunktion, Impulsantwort, Stabilit&auml;t, Verschaltungsregeln<br>
+				<u>Kontinuierliche Signale:</u> Energie, Leistung, Korrelation, Faltungsoperation, Dirac- Stoß,
+				Sprung-Funktion, wichtige Signalformen<br>
+				<u>Fourier-Analyse:</u>: Fourier-Reihenentwicklung periodischer Signale, Polarform, komplexe
+				Fourier-Reihe,
+				FourierTransformation, Eigenschaften der Fourier- Transformation<br>
+				Matlab Beispiele
+			</p>
+			<h3>Pr&uuml;fungsform:</h3>
+			<p>Klausur 60 Minuten, benotet</p>
+		</section>
+		<section class="modul-bewertung">
+			<form class="fields">
+				<section>
+					<h3><label for="note">Note:</label></h3>
+					<input type="number" max="5" min="1" step="0.1" id="note">
+				</section>
+				<section class="bewertung">
+					<h3><label for="bewertung">Bewertung:</label></h3>
+					<textarea id="bewertung" rows="10" cols="30"></textarea>
+					<button type="submit" id="eingabe">Speichern</button>
+				</section>
+			</form>
+		</section>
 	</section>
-	<section class="modul-bewertung">
-		<form class="fields">
-			<section>
-				<h3><label for="note">Note:</label></h3>
-				<input type="number" max="5" min="1" step="0.1" id="note">
+	<hr>
+	<section class="bewertungsliste">
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Andi Arbeit</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">
+					Exmatrikulationsantrag ist raus.
+				</section>
+				<section class="bewertungsvalue">1.0/5.0</section>
 			</section>
-			<section class="bewertung">
-				<h3><label for="bewertung">Bewertung:</label></h3>
-				<textarea id="bewertung" rows="10" cols="30"></textarea>
-				<button type="submit" id="eingabe">Speichern</button>
+		</section>
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Kuni Gunde</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">
+					Ich fand das Fach interessant,
+					weiß allerdings nicht, was ich damit anfangen soll.
+				</section>
+				<section class="bewertungsvalue">4.5/5.0</section>
 			</section>
-		</form>
-		<form action="AM1_Bewertungen.html" target="_self">
-			<button type="submit">Bewertungen anzeigen</button>
-		</form>
+		</section>
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Reiner Zufall</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">
+					Super Fach! Ich finde die Fouriertransformation einfach toll!
+				</section>
+				<section class="bewertungsvalue">5.0/5.0</section>
+			</section>
+		</section>
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Alan Turing</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">
+					Ich habe w&auml;hrend diesem Modul meine Lebensentscheidungen mehrmals
+					hinterfragt.
+				</section>
+				<section class="bewertungsvalue">5.0/5.0</section>
+			</section>
+		</section>
 	</section>
 </main>
 <footer>
