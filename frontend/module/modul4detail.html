@@ -3,10 +3,11 @@
 <head>
 	<meta charset='utf-8'>
 	<!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <!---------------->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		  rel="stylesheet">
+	<!---------------->
 	<link rel="stylesheet" type='text/css' href="../style/global_style.css">
 	<link rel="stylesheet" type='text/css' href="../style/moduldetail_style.css">
 	<title>Uni-WOW</title>
@@ -26,35 +27,77 @@
 </header>
 <h1 class="ueberschrift">Formale Grundlagen</h1>
 <main>
-	<section class="modul-info">
-		<h3>Modulverantwortlicher:</h3>
-		<p>Prof. Dr. W. Hower</p>
-		<h3>Workload:</h3>
-		<p>150 h</p>
-		<h3>Credits:</h3>
-		<p>5 ECTS</p>
-		<h3>Lernergebnisse:</h3>
-		<p>Komplexit&auml;ts-, Sprach- und Automaten-Theorie nutzen<br>Trennung der berechenbaren von den unberechenbaren Problemen vornehmen</p>
-		<h3>Inhalte:</h3>
-		<p>informatik-basierte mathematische Strukturen, Komplexit&auml;ts-Theorie, Sprach-Klassen mit Chomsky-Hierarchie, Automaten-Theorie, prinzipielle Berechnungsgrenzen, Unberechenbarkeit</p>
-		<h3>Pr&uuml;fungsform:</h3>
-		<p>Klausur, 90 Minuten, benotet</p>
+	<section class="modul">
+		<section class="modul-info">
+			<h3>Modulverantwortlicher:</h3>
+			<p>Prof. Dr. W. Hower</p>
+			<h3>Workload:</h3>
+			<p>150 h</p>
+			<h3>Credits:</h3>
+			<p>5 ECTS</p>
+			<h3>Lernergebnisse:</h3>
+			<p>Komplexit&auml;ts-, Sprach- und Automaten-Theorie nutzen<br>Trennung der berechenbaren von den
+				unberechenbaren Problemen vornehmen</p>
+			<h3>Inhalte:</h3>
+			<p>informatik-basierte mathematische Strukturen, Komplexit&auml;ts-Theorie, Sprach-Klassen mit
+				Chomsky-Hierarchie, Automaten-Theorie, prinzipielle Berechnungsgrenzen, Unberechenbarkeit</p>
+			<h3>Pr&uuml;fungsform:</h3>
+			<p>Klausur, 90 Minuten, benotet</p>
+		</section>
+		<section class="modul-bewertung">
+			<form class="fields">
+				<section>
+					<h3><label for="note">Note:</label></h3>
+					<input type="number" max="5" min="1" step="0.1" id="note">
+				</section>
+				<section class="bewertung">
+					<h3><label for="bewertung">Bewertung:</label></h3>
+					<textarea id="bewertung" rows="10" cols="30"></textarea>
+					<button type="submit" id="eingabe">Speichern</button>
+				</section>
+			</form>
+		</section>
 	</section>
-	<section class="modul-bewertung">
-		<form class="fields">
-			<section>
-				<h3><label for="note">Note:</label></h3>
-				<input type="number" max="5" min="1" step="0.1" id="note">
+	<hr>
+	<section class="bewertungsliste">
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Andi Arbeit</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">Sau kompliziert aber echt spannend! Team R&uuml;ckw&auml;rtsersetzung
+					bei
+					Rekurrenzen.
+				</section>
+				<section class="bewertungsvalue">4.0/5.0</section>
 			</section>
-			<section class="bewertung">
-				<h3><label for="bewertung">Bewertung:</label></h3>
-				<textarea id="bewertung" rows="10" cols="30"></textarea>
-				<button type="submit" id="eingabe">Speichern</button>
+		</section>
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Kuni Gunde</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">Sehr Lehrreich!</section>
+				<section class="bewertungsvalue">4.5/5.0</section>
 			</section>
-		</form>
-		<form action="FG_Bewertungen.html" target="_self">
-			<button type="submit">Bewertungen anzeigen</button>
-		</form>
+		</section>
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Reiner Zufall</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">Hab nix verstanden, naja Drittversuch wird schon regeln.</section>
+				<section class="bewertungsvalue">1.0/5.0</section>
+			</section>
+		</section>
+		<section class="bewertung">
+			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+			<section class="benutzername">Alan Turing</section>
+			<section class="bewertungsfeld">
+				<section class="bewertungstext">Einfach toll! kantor'sche Diagonalisierung haut rein. Der Kellerautomat
+					ist
+					auch einfach wild. Also ich versteh' das.
+				</section>
+				<section class="bewertungsvalue">5.0/5.0</section>
+			</section>
+		</section>
 	</section>
 </main>
 <footer>
