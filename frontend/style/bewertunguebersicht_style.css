@@ -21,6 +21,10 @@
     width: 30px;
     height: 30px;
 }
-
+button {
+    margin-left: 20px;
+    height: 5vh;
+    border-radius: 5px;
+}
 
 
