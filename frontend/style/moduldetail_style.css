@@ -98,3 +98,7 @@ button {
     color: black;
 }
 
+select {
+    width: 6vh;
+}
+
