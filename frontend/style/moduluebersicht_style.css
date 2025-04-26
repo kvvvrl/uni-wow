@@ -80,3 +80,7 @@ h3 {
     cursor: default;
     opacity: 0.6;
 }
+
+.checked {
+    color: orange;
+}
