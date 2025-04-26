@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset='utf-8'>
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <!---------------->
-    <link rel='stylesheet' type='text/css' href='style/global_style.css'>
-    <link rel='stylesheet' type='text/css' href='style/login_style.css'>
-    <title>Uni-WOW</title>
+	<meta charset='utf-8'>
+	<!--Google Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		  rel="stylesheet">
+	<!---------------->
+	<link rel='stylesheet' type='text/css' href='style/global_style.css'>
+	<link rel='stylesheet' type='text/css' href='style/login_style.css'>
+	<title>Uni-WOW</title>
 </head>
-  <body>
-    <main>
-      <section class="login">
-        <h1 style="text-align: center">Login</h1>
-        <form action="index.html" target="_self">
-          <section>
-            <label for="vname">Vorname:</label>
-            <input type="text" id="vname" name="vname" />
-          </section>
-          <section>
-            <label for="nname">Nachname:</label>
-            <input type="text" id="nname" name="fname" />
-          </section>
-          <section>
-            <label for="mnummer">Matrikelnummer:</label>
-            <input minlength="6" type="number" id="mnummer" name="mnummer" />
-          </section>
-          <section>
-            <button type="submit">Login</button>
-          </section>
-        </form>
-      </section>
-    </main>
-    <footer>
-        <h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
-        <a href="impressum.html">Impressum</a>
-    </footer>
+<body>
+<main>
+	<section class="login">
+		<h1 style="text-align: center">Login</h1>
+		<form action="index.html" target="_self">
+			<section>
+				<label for="mnummer">Matrikelnummer:</label>
+				<input minlength="6" type="number" id="mnummer" name="mnummer"/>
+			</section>
+			<section>
+				<label for="passwort">Passwort:</label>
+				<input type="password" id="passwort" name="passwort"/>
+			</section>
+			<section>
+				<button type="submit">Login</button>
+			</section>
+		</form>
+	</section>
+</main>
+<footer>
+	<h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
+	<a href="impressum.html">Impressum</a>
+</footer>
 </body>
 </html>
