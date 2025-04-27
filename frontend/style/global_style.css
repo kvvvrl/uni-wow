@@ -8,19 +8,24 @@ html, body {
 }
 /*NAVBAR*/
 nav {
-    background-color: #000;
-    color: #fff;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    height: 5rem;
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    
+    /*background-color: #0000009d;
+    Transition der navbar
+    */
+    background-color: rgba(54, 54, 54, 1);
+    transition: background-color 0.3 ease;
 
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
 }
 nav ul {
     display: flex;
-    padding: 0;
-    background-color: #000;
     align-items: center;
     justify-content: center;
     align-items: center;
@@ -29,23 +34,42 @@ nav ul {
 nav li {
     display: inline;
     flex-grow: 1;
-    border: 1px solid black;
     height: 100%;
     text-align: center;
 }
-nav li:hover {
-    border-color: white;
-    background-color: #5e5e5e;
+nav li a:hover {
+    opacity: 0.6;
 }
 
 nav li a {
     display: block;
-    width: 100%;  /*Damit alles angeklick werden kann*/
-    height: 100%;
     text-align: center;
-    line-height: 5rem;
+    line-height: 3rem;
     text-decoration: none;
-    color: #fff;
+    color: rgba(255, 255, 255, 1);
+    transition: color 0.3 ease;
+
+}
+.navblock1 {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 4vh;
+    height: 4vh;
+    margin-right: 33%;
+    margin-left: 1vh;
+}
+/* Icon Navbar*/
+.navblock1 img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4vh;
+    height: 4vh;
+}
+
+.navblock1 img:hover{
+    opacity: 0.6;
 }
 
 .navblock3{
@@ -61,6 +85,7 @@ body {
 
 /*INHALT*/
 main {
+    margin-top: 3rem;
     flex: 1 0 auto;
     min-height: 0;
     flex-grow: 1;
