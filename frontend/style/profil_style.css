@@ -1,26 +1,28 @@
 .field {
   display: flex;
 }
-
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
 .picture {
   width: 200px;
   height: 200px;
 }
-
-main {
-  padding: 5px;
+.upper{
+  display: flex;
+  flex-direction: row;
+  gap: 1vh;
+  box-sizing: border-box;
 }
-
 input {
+  font-size: medium;
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 1vh;
   border: grey solid 0.3vh;
-  border-width: 2px;
-  padding: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  ;
-}
+  padding: 1vh;
+  margin-top: 1vh;}
 
 input[type="text"] {
   width: 50%;
