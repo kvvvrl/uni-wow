@@ -1,10 +1,8 @@
 .bewertungsliste{
     color: black;
-}
-
-.bewertungsliste{
     margin: 20px;
 }
+
 .bewertungsfeld{
     display: flex;
     flex-direction: row;
@@ -21,6 +19,13 @@
     width: 30px;
     height: 30px;
 }
+button {
+    margin-left: 20px;
+    height: 5vh;
+    border-radius: 5px;
+}
 
-
+.modulname{
+    color: black;
+}
 

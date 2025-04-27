@@ -1,0 +1,83 @@
+h1 {
+    color: #fff;
+    background-color: #4CAF50;
+    font-size: 3vh;
+    text-align: center;
+    width: 45%;
+    margin: 1vh auto;
+}  
+body {
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: #000000a2 solid 4px;
+    border-radius: 10px;
+    padding: 2vh;
+    width: 100%;
+
+}
+
+input {
+    height: 4vh;
+    background-color: #dddddd8f;
+    margin-top: 1vh;
+    border: #4CAF50 solid 0.3vh;
+    border-radius: 5px;
+    color: #585858;
+    font-size: medium;
+    width: 100%;
+    box-sizing: border-box;
+}
+.namen{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.namen input {
+    width: 45%; 
+}
+input:focus {
+    outline: none;
+    border: #4CAF50 solid 0.3vh;
+    background-color: #ffffff93;
+    color: #8a8a8a;
+}
+input:not(:placeholder-shown) {
+    border: #4CAF50 solid 0.3vh;
+}
+
+button {
+margin-top: 1vh;
+background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
+  font-size: medium;
+  cursor: pointer;
+  border-radius: 1vh;
+}
+button:hover{
+    color: #8a8a8a;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+#login_button {
+    display: block; 
+    margin: 1vh auto; 
+    justify-content: center; 
+    align-items: center; 
+}

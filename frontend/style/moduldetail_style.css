@@ -9,13 +9,13 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-main {
+.modul {
     display: flex;
     flex-direction: row;
     padding: 2vh;
 }
 
-main  > * {
+.modul  > * {
     flex: 1 1 0;
 }
 
@@ -49,6 +49,56 @@ button:hover {
     background-color: #a2c8a2;
 }
 
-.bewertung button {
-    margin-top: 2vh;
+#eingabe{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    padding: 12px 32px;
+    cursor: pointer;
+    float: right;
+    }
+#eingabe:hover{
+    color: #8a8a8a; 
 }
+
+/* temporary paste from bewertungsuebersicht */
+.bewertungsliste{
+    color: black;
+    margin: 20px;
+}
+
+.bewertungsfeld{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: grey;
+    border-width: 2px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.profilepicture{
+    width: 30px;
+    height: 30px;
+}
+button {
+    margin-left: 20px;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.modulname{
+    color: black;
+}
+
+select {
+    width: 6vh;
+}
+
