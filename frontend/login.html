@@ -9,24 +9,22 @@
 		  rel="stylesheet">
 	<!---------------->
 	<link rel='stylesheet' type='text/css' href='style/global_style.css'>
-	<link rel='stylesheet' type='text/css' href='style/login_style.css'>
+	<link rel='stylesheet' type='text/css' href='style/login_register_style.css'>
 	<title>Uni-WOW</title>
 </head>
 <body>
 <main>
 	<section class="login">
-		<h1 style="text-align: center">Login</h1>
 		<form action="index.html" target="_self">
+			<h1 style="text-align: center">Login</h1>
 			<section>
-				<label for="mnummer">Matrikelnummer:</label>
-				<input minlength="6" type="number" id="mnummer" name="mnummer"/>
+				<input minlength="6" type="number" id="mnummer" name="mnummer" placeholder="Matrikelnummer"/>
 			</section>
 			<section>
-				<label for="passwort">Passwort:</label>
-				<input type="password" id="passwort" name="passwort"/>
+				<input type="password" id="passwort" name="passwort" placeholder="Passwort"/>
 			</section>
 			<section>
-				<button type="submit">Login</button>
+				<button type="submit" id="login_button">Login</button>
 			</section>
 		</form>
 	</section>
