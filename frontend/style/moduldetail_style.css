@@ -1,8 +1,6 @@
-h3 {
-    margin-bottom: 0;
-}
-p {
-    margin-top: 0;
+main{
+    margin: 0;
+    padding: 0;
 }
 
 input[type=number] {
@@ -12,7 +10,7 @@ input[type=number] {
 .modul {
     display: flex;
     flex-direction: row;
-    padding: 2vh;
+    padding: 1cqi;
 }
 
 .modul  > * {
@@ -23,7 +21,7 @@ input[type=number] {
     display: flex;
     flex-direction: column;
 }
-hr {
+h3 {
     border-color: grey;
     width: 100%;
 }
@@ -69,7 +67,7 @@ button:hover {
 /* temporary paste from bewertungsuebersicht */
 .bewertungsliste{
     color: black;
-    margin: 20px;
+    margin: 2vh;
 }
 
 .bewertungsfeld{
