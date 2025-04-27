@@ -30,9 +30,10 @@
 
 .container3{
     display: flex;
-    margin: 2vh 3vh;
-    flex-direction: row;
+    margin: 2vh 0;
+    align-items: center;
     justify-content: space-between;
+    flex-direction: row;
 }
 
 .bewertung1, .bewertung2, .bewertung3{
