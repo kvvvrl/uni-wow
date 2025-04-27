@@ -29,7 +29,7 @@ input {
     height: 4vh;
     background-color: #dddddd8f;
     margin-top: 1vh;
-    border: #4CAF50 solid 0.3vh;
+    border: grey solid 0.3vh;
     border-radius: 5px;
     color: #585858;
     font-size: medium;

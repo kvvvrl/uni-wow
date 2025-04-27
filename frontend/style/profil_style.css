@@ -1,24 +1,25 @@
 .field {
-    display: flex;
-}
-  
-.picture{
-    width: 200px;
-    height: 200px;
+  display: flex;
 }
 
-main{
-    padding:5px;
+.picture {
+  width: 200px;
+  height: 200px;
 }
 
-input{
-    border-style: solid;
-    border-radius: 10px;
-    border-color: grey;
-    border-width: 2px;
-    padding: 10px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+main {
+  padding: 5px;
+}
+
+input {
+  border-style: solid;
+  border-radius: 10px;
+  border: grey solid 0.3vh;
+  border-width: 2px;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  ;
 }
 
 input[type="text"] {
@@ -30,35 +31,52 @@ input[type="number"] {
   width: 100%;
   box-sizing: border-box;
 }
-
-#pvname{
-    margin-right: 5px;
+input:focus {
+  outline: none;
+  border: #4CAF50 solid 0.3vh;
+  background-color: #ffffff93;
+  color: #8a8a8a;
 }
-#pnname{
-    margin-left: 5px;
+input:not(:placeholder-shown) {
+  border: #4CAF50 solid 0.3vh;
+}
+#pvname {
+  margin-right: 5px;
+}
+
+#pnname {
+  margin-left: 5px;
+}
+
+#pmnummer {
+  background-color: #ffffff;
+}
+
+#pmnummer:hover {
+  background-color: #8a8a8a;
 }
 
 input:disabled {
-  background-color:darkgrey;
+  background-color: darkgrey;
   color: #999999;
 }
 
 input[type="submit"] {
-  background-color: #4CAF50; /* Green */
+  margin-top: 1vh;
+  background-color: #4CAF50;
+  /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 12px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
 
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: medium;
   cursor: pointer;
+  border-radius: 1vh;
 }
+
 input[type="submit"]:hover {
   color: #8a8a8a;
 }
-
-
-
