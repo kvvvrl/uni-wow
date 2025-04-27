@@ -11,7 +11,7 @@
     flex-direction: row-reverse;
     margin: 2vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
-    border-radius: 1vh;
+    border-radius: 0.5vh;
     overflow: hidden;
 }
 .container2{
@@ -19,7 +19,7 @@
     flex-direction: row;
     margin: 2vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
-    border-radius: 1vh;
+    border-radius: 0.5vh;
     overflow: hidden;
 }
 
@@ -37,7 +37,7 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    border-radius: 1vh;
+    border-radius: 0.5vh;
 }
 
 .bewertung1, .bewertung2, .bewertung3{
