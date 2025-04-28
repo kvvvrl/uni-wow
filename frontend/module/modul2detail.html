@@ -8,6 +8,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
 		  rel="stylesheet">
 	<!---------------->
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!---------------->
 	<link rel="stylesheet" type='text/css' href="../style/global_style.css">
 	<link rel="stylesheet" type='text/css' href="../style/moduldetail_style.css">
 	<title>Uni-WOW</title>
@@ -77,6 +80,13 @@
 				<section class="bewertung">
 					<h3><label for="bewertung">Bewertung:</label></h3>
 					<textarea id="bewertung" rows="10" cols="30"></textarea>
+					<section class="star-rating">
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+					</section>
 					<button type="submit" id="eingabe">Speichern</button>
 				</section>
 			</form>
@@ -84,48 +94,80 @@
 	</section>
 	<hr>
 	<section class="bewertungsliste">
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
-			<section class="benutzername">Andi Arbeit</section>
-			<section class="bewertungsfeld">
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+				<strong class="benutzername">Andi Arbeit</strong>
+			</section>
+			<section class="inhalt">
 				<section class="bewertungstext">
 					Vorlesung war eher so naja
 					aber das Praktikum hat mir gut gefallen
 				</section>
-				<section class="bewertungsvalue">3.5/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</section>
 			</section>
 		</section>
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
-			<section class="benutzername">Kuni Gunde</section>
-			<section class="bewertungsfeld">
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+				<strong class="benutzername">Kuni Gunde</strong>
+			</section>
+			<section class="inhalt">
 				<section class="bewertungstext">
 					H&auml;tte gerne noch neben javascript/jquery andere
 					tools wie Node.js gelernt, aber vielleicht kommt
 					das ja noch in Webanwendungen 2.
 				</section>
-				<section class="bewertungsvalue">4.0/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+				</section>
 			</section>
 		</section>
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
-			<section class="benutzername">Reiner Zufall</section>
-			<section class="bewertungsfeld">
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+				<strong class="benutzername">Reiner Zufall</strong>
+			</section>
+			<section class="inhalt">
 				<section class="bewertungstext">
 					War mir zu einfach.
 				</section>
-				<section class="bewertungsvalue">2.5/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</section>
 			</section>
 		</section>
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
-			<section class="benutzername">Alan Turing</section>
-			<section class="bewertungsfeld">
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<img alt="profilbild" class="profilepicture" src="../pictures/dummy.jpg"/>
+				<strong class="benutzername">Alan Turing</strong>
+			</section>
+			<section class="inhalt">
 				<section class="bewertungstext">
 					SuperModul! Habe gut vermittelt bekommen, wie man HTML
 					programmiert... wenn man das Programmieren nennen kann.
 				</section>
-				<section class="bewertungsvalue">4.5/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+				</section>
 			</section>
 		</section>
 	</section>
