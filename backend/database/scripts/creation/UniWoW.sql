@@ -55,8 +55,9 @@ CREATE TABLE "Dozent"(
   id INTEGER NOT NULL,
   "Vorname" TEXT NOT NULL,
   "Nachname" TEXT NOT NULL,
-  "Titel" TEXT,
-  PRIMARY KEY(id)
+  "Titel_id" INTEGER NOT NULL,
+  PRIMARY KEY(id),
+  CONSTRAINT "Titel_Dozent" FOREIGN KEY ("Titel_id") REFERENCES "Titel" (id)
 );
 
 
@@ -69,4 +70,9 @@ CREATE TABLE "DozentToModul"(
   CONSTRAINT "Modul_DozentToModul"
     FOREIGN KEY ("Modul_id") REFERENCES "Modul" (id)
 );
+
+
+CREATE TABLE "Titel"
+  (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "Bezeichnung" TEXT NOT NULL)
+;
 
