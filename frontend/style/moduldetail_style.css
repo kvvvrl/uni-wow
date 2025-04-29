@@ -13,6 +13,10 @@ main {
     flex: 1 1 0;
 }
 
+.modul-info {
+    padding-right: 5vh;
+}
+
 .modul-bewertung {
     display: flex;
     flex-direction: column;
