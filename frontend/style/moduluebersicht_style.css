@@ -6,7 +6,7 @@
     padding: 1vh;
     margin: 1vh;
     box-shadow: 2px 2px 4px rgb(76, 175, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
 .modul-bestanden:hover {
@@ -25,7 +25,7 @@
     padding: 1vh;
     margin: 1vh;
     box-shadow: 2px 2px 4px rgb(161, 48, 60);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
 .modul-durchfall:hover {
@@ -48,7 +48,7 @@
     padding: 1vh;
     margin: 1vh;
     box-shadow: 2px 2px 4px rgb(65, 65, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
 .modul:hover {
