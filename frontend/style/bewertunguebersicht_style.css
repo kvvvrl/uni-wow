@@ -15,6 +15,12 @@
     margin-bottom: 20px;
 }
 
+.bewertungsvalue {
+    text-wrap: nowrap;
+    align-self: center;
+    padding-left: 3vh;
+}
+
 .profilepicture{
     width: 30px;
     height: 30px;
@@ -37,6 +43,8 @@ button {
     display: flex;
     flex-direction: row;
     align-items: end;
+    justify-content: space-between;
+    transition: font-weight 0.2s ease-in-out;
 }
 
 .inhalt {
@@ -74,4 +82,13 @@ button {
 
 .link i {
     padding-left: 0.5vh;
+}
+
+.benutzer-info i {
+    padding-right: 1vh;
+}
+
+.benutzer-info i:hover {
+    cursor: pointer;
+    font-weight: bold;
 }
