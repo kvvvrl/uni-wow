@@ -168,12 +168,31 @@
 						"autoincrement": false
 					},
 					"estimatedSize": ""
+				},
+				{
+					"id": "1012ebfe-c7da-48fd-ab4c-460afceff60c",
+					"name": "Verantworlicher",
+					"datatype": "INTEGER",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"fk": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"collation": "",
+					"sqlite": {
+						"autoincrement": false
+					},
+					"estimatedSize": ""
 				}
 			],
 			"relations": [
 				"fea6c6a4-4357-4b3b-ad7b-a1da6ad5f736",
 				"f7282b6c-e803-4bed-97fa-30dda540d893",
-				"c96f9309-1041-4f34-93aa-c3f11769dab6"
+				"c96f9309-1041-4f34-93aa-c3f11769dab6",
+				"1e2f9c19-800a-4d82-b295-68331974e009"
 			],
 			"lines": [],
 			"keys": [
@@ -663,7 +682,8 @@
 			],
 			"relations": [
 				"103b9fb6-3699-4a81-a25f-0093124204cf",
-				"57866241-392c-4db8-8f21-311081cf5b6b"
+				"57866241-392c-4db8-8f21-311081cf5b6b",
+				"1e2f9c19-800a-4d82-b295-68331974e009"
 			],
 			"lines": [],
 			"keys": [
@@ -1030,6 +1050,33 @@
 			"customCode": "",
 			"relationColor": "transparent",
 			"linegraphics": "default"
+		},
+		"1e2f9c19-800a-4d82-b295-68331974e009": {
+			"id": "1e2f9c19-800a-4d82-b295-68331974e009",
+			"name": "id_Modul",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "c82efb80-3c8d-4fc4-a537-d700f4d11439",
+			"parent": "89344ed0-843c-4e0b-951c-2487897ab6d4",
+			"child": "925a5a95-b097-4c32-8147-307f7c53aa3e",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "8ff7ca93-a537-4e6f-af75-8620e9fa5e4d",
+					"parentcol": "24dfcee5-dba6-4d04-86b7-2696b4e00195",
+					"childcol": "1012ebfe-c7da-48fd-ab4c-460afceff60c"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"relationColor": "transparent",
+			"linegraphics": "default"
 		}
 	},
 	"notes": {},
@@ -1058,7 +1105,7 @@
 			"minor": 1,
 			"extra": 0
 		},
-		"writeFileParam": false,
+		"writeFileParam": true,
 		"authorName": "",
 		"companyDetails": "",
 		"companyUrl": "",
@@ -1085,7 +1132,7 @@
 		},
 		"connectionVersion": "",
 		"modelScriptFilePath": "/home/aaron/WebstormProjects/uni-wow/backend/database/scripts/creation/UniWoW.sql",
-		"lastSaved": 1745921029793
+		"lastSaved": 1745924340786
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -1105,8 +1152,8 @@
 					"referencedItemId": "925a5a95-b097-4c32-8147-307f7c53aa3e",
 					"x": 825,
 					"y": 224,
-					"gHeight": 189,
-					"gWidth": 220,
+					"gHeight": 207,
+					"gWidth": 235,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -1129,8 +1176,8 @@
 				},
 				"3e0c1424-0c94-4d8f-91ab-66e2aa1d7711": {
 					"referencedItemId": "3e0c1424-0c94-4d8f-91ab-66e2aa1d7711",
-					"x": 68,
-					"y": 412,
+					"x": 125,
+					"y": 373,
 					"gHeight": 135,
 					"gWidth": 211,
 					"color": "#ffffff",
@@ -1142,8 +1189,8 @@
 				},
 				"7279f4b2-0ce2-4716-9f37-59ca4d7c0acc": {
 					"referencedItemId": "7279f4b2-0ce2-4716-9f37-59ca4d7c0acc",
-					"x": 566,
-					"y": 109,
+					"x": 536,
+					"y": 92,
 					"gHeight": 63,
 					"gWidth": 211,
 					"color": "#ffffff",
@@ -1155,8 +1202,8 @@
 				},
 				"89344ed0-843c-4e0b-951c-2487897ab6d4": {
 					"referencedItemId": "89344ed0-843c-4e0b-951c-2487897ab6d4",
-					"x": 434,
-					"y": 559,
+					"x": 448,
+					"y": 505,
 					"gHeight": 99,
 					"gWidth": 187,
 					"color": "#ffffff",
@@ -1181,8 +1228,8 @@
 				},
 				"79c70743-6ab6-4c31-810e-b22f38d073ee": {
 					"referencedItemId": "79c70743-6ab6-4c31-810e-b22f38d073ee",
-					"x": 47,
-					"y": 662,
+					"x": 418,
+					"y": 731,
 					"gHeight": 63,
 					"gWidth": 198,
 					"color": "#ffffff",
@@ -1243,7 +1290,8 @@
 		"f7282b6c-e803-4bed-97fa-30dda540d893",
 		"103b9fb6-3699-4a81-a25f-0093124204cf",
 		"c96f9309-1041-4f34-93aa-c3f11769dab6",
-		"57866241-392c-4db8-8f21-311081cf5b6b"
+		"57866241-392c-4db8-8f21-311081cf5b6b",
+		"1e2f9c19-800a-4d82-b295-68331974e009"
 	],
 	"collapsedTreeItems": [],
 	"reverseStats": {}
