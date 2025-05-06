@@ -2,15 +2,18 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
+	<meta charset="utf-8"/>
 	<!--Google Fonts-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-		rel="stylesheet">
+		  rel="stylesheet">
 	<!---------------->
-	<link rel="stylesheet" type="text/css" href="style/global_style.css" />
-	<link rel="stylesheet" type="text/css" href="style/profil_style.css" />
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!---------------->
+	<link rel="stylesheet" type="text/css" href="style/global_style.css"/>
+	<link rel="stylesheet" type="text/css" href="style/profil_style.css"/>
 	<title>Uni-WOW</title>
 
 	<!--Script für Nav-->
@@ -18,47 +21,131 @@
 </head>
 
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li class="navblock1">
-					<a href="index.html">
-						<img src="pictures/Icon_White.svg" alt="icon" />
-					</a>
-				</li>
-				<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
-				<li class="navblock3">
-					<a href="bewertungsuebersicht.html">Bewertungen</a>
-				</li>
-				<li class="navblock4"><a href="profil.html">Profil</a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
+<header>
+	<nav>
+		<ul>
+			<li class="navblock1">
+				<a href="index.html">
+					<img src="pictures/Icon_White.svg" alt="icon"/>
+				</a>
+			</li>
+			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
+			<li class="navblock3">
+				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
+			</li>
+			<li class="navblock4"><a href="profil.html">Profil</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<section>
 		<form>
-			<section class="upper">
-				<img class="picture" src="pictures/dummy.jpg" />
-				<section class="noten">
-					<p> Notenschnitt: 4,0</p>
-					<p> ECTS: 2</p>
+			<section class="profil-upper">
+				<section class="image-container">
+					<img class="picture" src="pictures/dummy.jpg"/>
+					<section class="overlay" onclick="alert('Dummy Bild-Upload')">
+						<i class="fa fa-upload icon" aria-hidden="true"></i>
+					</section>
+				</section>
+				<section class="container">
+					<section class="field">
+						<input type="text" id="pvname" name="vname" placeholder="Vorname">
+						<input type="text" id="pnname" name="fname" placeholder="Nachname">
+					</section>
+					<section class="field">
+						<input type="number" id="pmnummer" name="mnummer" readonly placeholder="Matrikelnummer: 106342" disabled>
+					</section>
+					<section class="field">
+						<input type="password" id="password" name="password" placeholder="Passwort" required/>
+					</section>
+					<section class="field">
+						<input type="password" id="password" name="password" placeholder="Passwort Wiederholen" required/>
+					</section>
+					<section class="speichern">
+						<input type="submit" value="Speichern">
+					</section>
 				</section>
 			</section>
-			<section class="container">
-				<section class="field">
-					<input type="text" id="pvname" name="vname" placeholder="Vorname">
-					<input type="text" id="pnname" name="fname" placeholder="Nachname">
+			<section class="profil-lower">
+				<section class="noten-liste">
+					<table>
+						<tr>
+							<th>Modul</th>
+							<th>ECTS</th>
+							<th>Note</th>
+						</tr>
+						<tr>
+							<td>Mathematik 2</td>
+							<td>5</td>
+							<td>1.0</td>
+						</tr>
+						<tr>
+							<td>Angewandte Mathematik</td>
+							<td>5</td>
+							<td>5.0</td>
+						</tr>
+						<tr>
+							<td>Formale Grundlagen</td>
+							<td>5</td>
+							<td>1.7</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+						<tr>
+							<td>Dummy</td>
+							<td>0</td>
+							<td>0.0</td>
+						</tr>
+					</table>
 				</section>
-				<section class="field">
-					<input type="number" id="pmnummer" name="mnummer" readonly placeholder="Matrikelnummer" disabled>
+				<section class="profil-infos">
+					<table>
+						<tr>
+							<td><h2>Notendurchschnitt:</h2></td>
+							<td><h2 class="wert">2.5</h2></td>
+						</tr>
+						<tr>
+							<td><h2>Gesammelte ECTS:</h2></td>
+							<td><h2 class="wert">15</h2></td>
+						</tr>
+					</table>
 				</section>
-				<section><input type="submit" value="Speichern"></section>
 			</section>
 		</form>
-	</main>
-	<footer>
-		<h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
-		<a href="impressum.html">Impressum</a>
-	</footer>
+	</section>
+</main>
+<footer>
+	<h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
+	<a href="impressum.html">Impressum</a>
+</footer>
 </body>
 
 </html>
