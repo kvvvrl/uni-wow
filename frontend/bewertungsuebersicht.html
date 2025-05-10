@@ -3,10 +3,14 @@
 <head>
 	<meta charset="utf-8"/>
 	<!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <!---------------->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		  rel="stylesheet">
+	<!---------------->
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!---------------->
 	<link rel="stylesheet" type="text/css" href="style/global_style.css"/>
 	<link
 			rel="stylesheet"
@@ -16,76 +20,117 @@
 	<title>Meine Bewertungen</title>
 
 	<!--Script für Nav-->
-    <script src="script/navbar.js"></script>
+	<script src="script/navbar.js"></script>
 </head>
 <body>
-	<header>
-		<nav>
-		  <ul>
+<header>
+	<nav>
+		<ul>
 			<li class="navblock1">
-			  <a href="index.html">
-				<img src="pictures/Icon_White.svg" alt="icon" />
-			  </a>
+				<a href="index.html">
+					<img src="pictures/Icon_White.svg" alt="icon"/>
+				</a>
 			</li>
 			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
 			<li class="navblock3">
-			  <a href="bewertungsuebersicht.html">Bewertungen</a>
+				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
 			</li>
 			<li class="navblock4"><a href="profil.html">Profil</a></li>
-		  </ul>
-		</nav>
-	  </header>
+		</ul>
+	</nav>
+</header>
 <main>
-	<h1 class="ueberschrift">
-		Meine Bewertungen
-	</h1>
 	<section class="bewertungsliste">
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="pictures/dummy.jpg"/>
-			<section>
-				<a href="module/modul1detail.html" class="modulname">Mathematik 2</a>
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<strong class="modul">Mathematik 2</strong>
+				<i class="fa fa-pencil-square-o" aria-hidden="true" onclick="alert('Dummy Kommentar bearbeiten')"></i>
 			</section>
-			<section class="bewertungsfeld">
-				<section class="bewertungstext">Dieses Modul hat mein Leben ver&auml;ndert. Endlich weiß ich wie viele
+			<section class="inhalt">
+				<section class="bewertungstext">
+					Dieses Modul hat mein Leben ver&auml;ndert. Endlich weiß ich wie viele
 					M&ouml;glichkeiten es gibt k Elemente aus einer n-Elementigen Menge zu ziehen.
 				</section>
-				<section class="bewertungsvalue">4.0/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+				</section>
+			</section>
+			<section class="link">
+				<a href="module/modul1detail.html">zum Modul<i class="fa fa-share" aria-hidden="true"></i></a>
 			</section>
 		</section>
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="pictures/dummy.jpg"/>
-			<section>
-				<a href="module/modul2detail.html" class="modulname">Webanwendungen 1</a>
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<strong class="modul">Webanwendungen</strong>
+				<i class="fa fa-pencil-square-o" aria-hidden="true" onclick="alert('Dummy Kommentar bearbeiten')"></i>
 			</section>
-			<section class="bewertungsfeld">
-				<section class="bewertungstext">Super Modul! Habe gut vermittelt bekommen, wie man HTML programmiert... wenn
+			<section class="inhalt">
+				<section class="bewertungstext">
+					Super Modul! Habe gut vermittelt bekommen, wie man HTML programmiert...
+					wenn
 					man das Programmieren nennen kann.
 				</section>
-				<section class="bewertungsvalue">4.0/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+				</section>
+			</section>
+			<section class="link">
+				<a href="module/modul2detail.html">zum Modul<i class="fa fa-share" aria-hidden="true"></i></a>
 			</section>
 		</section>
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="pictures/dummy.jpg"/>
-			<section>
-				<a href="module/modul3detail.html" class="modulname">Angewandte Mathematik 1</a>
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<strong class="modul">Angewandte Mathematik</strong>
+				<i class="fa fa-pencil-square-o" aria-hidden="true" onclick="alert('Dummy Kommentar bearbeiten')"></i>
 			</section>
-			<section class="bewertungsfeld">
-				<section class="bewertungstext">Ich habe w&auml;hrend diesem Modul meine Lebensentscheidungen mehrmals
+			<section class="inhalt">
+				<section class="bewertungstext">
+					Ich habe w&auml;hrend diesem Modul meine Lebensentscheidungen mehrmals
 					hinterfragt.
 				</section>
-				<section class="bewertungsvalue">1.0/5.0</section>
+				<section class="bewertungsvalue" style="align-self: end">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</section>
+			</section>
+			<section class="link">
+				<a href="module/modul3detail.html">zum Modul<i class="fa fa-share" aria-hidden="true"></i></a>
 			</section>
 		</section>
-		<section class="bewertung">
-			<img alt="profilbild" class="profilepicture" src="pictures/dummy.jpg"/>
-			<section>
-				<a href="module/modul4detail.html" class="modulname">Formale Grundlagen</a>
+		<section class="kommentar">
+			<section class="benutzer-info">
+				<strong class="modul">Formale Grundlagen</strong>
+				<i class="fa fa-pencil-square-o" aria-hidden="true" onclick="alert('Dummy Kommentar bearbeiten')"></i>
 			</section>
-			<section class="bewertungsfeld">
-				<section class="bewertungstext">Einfach toll! kantor'sche Diagonalisierung haut rein. Der Kellerautomat ist
+			<section class="inhalt">
+				<section class="bewertungstext">
+					Einfach toll! Kantor'sche Diagonalisierung haut rein. Der Kellerautomat
+					ist
 					auch einfach wild. Also ich versteh das.
+					Hier ein längerer Kommentar um zu zwigen wie die Bwertung aussieht wenn sie mehr als eine Zeile beinhaltet.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				</section>
-				<section class="bewertungsvalue">5.0/5.0</section>
+				<section class="bewertungsvalue">
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+				</section>
+			</section>
+			<section class="link">
+				<a href="module/modul4detail.html">zum Modul<i class="fa fa-share" aria-hidden="true"></i></a>
 			</section>
 		</section>
 	</section>

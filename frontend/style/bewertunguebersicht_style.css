@@ -15,6 +15,12 @@
     margin-bottom: 20px;
 }
 
+.bewertungsvalue {
+    text-wrap: nowrap;
+    align-self: center;
+    padding-left: 3vh;
+}
+
 .profilepicture{
     width: 30px;
     height: 30px;
@@ -29,3 +35,60 @@ button {
     color: black;
 }
 
+.checked {
+    color: orange;
+}
+
+.benutzer-info {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    transition: font-weight 0.2s ease-in-out;
+}
+
+.inhalt {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1.5vh;
+    margin-top: 0.5vh;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kommentar {
+    padding: 1vh;
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    align-self: end;
+    margin-top: 0.5vh;
+    transition: font-weight 0.2s ease-in-out;
+}
+
+.link a{
+    text-decoration: none;
+    color: black;
+}
+
+.link:hover{
+    font-weight: bold;
+}
+
+.link i {
+    padding-left: 0.5vh;
+}
+
+.benutzer-info i {
+    padding-right: 1vh;
+}
+
+.benutzer-info i:hover {
+    cursor: pointer;
+    font-weight: bold;
+}

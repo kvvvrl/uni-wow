@@ -1,12 +1,6 @@
-h3 {
-    margin-bottom: 0;
-}
-p {
-    margin-top: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
+main {
+    margin-top: 3rem;
+    padding: 0;
 }
 
 .modul {
@@ -15,15 +9,20 @@ input[type=number] {
     padding: 2vh;
 }
 
-.modul  > * {
+.modul > * {
     flex: 1 1 0;
+}
+
+.modul-info {
+    padding-right: 5vh;
 }
 
 .modul-bewertung {
     display: flex;
     flex-direction: column;
 }
-hr {
+
+h3 {
     border-color: grey;
     width: 100%;
 }
@@ -45,11 +44,12 @@ button {
     height: 5vh;
     border-radius: 5px;
 }
+
 button:hover {
     background-color: #a2c8a2;
 }
 
-#eingabe{
+#eingabe {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -61,18 +61,19 @@ button:hover {
     padding: 12px 32px;
     cursor: pointer;
     float: right;
-    }
-#eingabe:hover{
-    color: #8a8a8a; 
+}
+
+#eingabe:hover {
+    color: #8a8a8a;
 }
 
 /* temporary paste from bewertungsuebersicht */
-.bewertungsliste{
+.bewertungsliste {
     color: black;
-    margin: 20px;
+    margin: 2vh;
 }
 
-.bewertungsfeld{
+.bewertungsfeld {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -84,17 +85,52 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.profilepicture{
+.benutzername {
+    margin-left: 1vh;
+}
+
+.benutzer-info {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.inhalt {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1.5vh;
+    margin-top: 0.5vh;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kommentar {
+    padding: 1vh;
+    margin-top: 3vh;
+}
+
+.fa-star {
+    color: grey;
+}
+
+.checked {
+    color: orange;
+}
+
+.profilepicture {
     width: 30px;
     height: 30px;
 }
+
 button {
     margin-left: 20px;
     height: 5vh;
     border-radius: 5px;
 }
 
-.modulname{
+.modulname {
     color: black;
 }
 
@@ -102,3 +138,15 @@ select {
     width: 6vh;
 }
 
+.star:hover {
+    color: orange;
+}
+
+.star {
+    line-height: 6vh;
+    font-size: 24px;
+}
+
+.star-rating {
+    text-align: right;
+}
