@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<!--Google Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		  rel="stylesheet">
+	<!---------------->
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!---------------->
+	<link rel="stylesheet" type="text/css" href="style/global_style.css"/>
+	<link
+			rel="stylesheet"
+			type="text/css"
+			href="style/moduluebersicht_style.css"
+	/>
+	<title>Uni-WOW</title>
+	<script src="script/navbar.js"></script>
+	<script src="script/ajax.js"></script>
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li class="navblock1">
+				<a href="index.html">
+					<img src="pictures/Icon_White.svg" alt="icon"/>
+				</a>
+			</li>
+			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
+			<li class="navblock3">
+				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
+			</li>
+			<li class="navblock4"><a href="profil.html">Profil</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<section class= "modul-liste" id="modul-liste">
+	</section>
+	<template class="modul-template" id="modul-template">
+		<a class="modul-link">
+			<section class="modul">
+				<section class="modul-bewertung">
+					<h2 class="modul-name"/>
+					<section>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					</section>
+				</section>
+				<hr/>
+				<section class="beschreibung-note">
+					<p class="modul-beschreibung"/>
+					<h3 class="modul-note"/>
+				</section>
+			</section>
+		</a>
+	</template>
+</main>
+<footer>
+	<h4>Webanwendungen 2 - Praktikum<br/>Backend Boys</h4>
+	<a href="impressum.html">Impressum</a>
+</footer>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        ladeModule();
+    });
+
+    function ladeModule() {
+        ajaxGet("http://localhost:8000/api/modul/alle", (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                data = JSON.parse(data)
+                console.log(data);
+                const liste = document.getElementById('modul-liste');
+                const template = document.getElementById('modul-template');
+
+                for (let i = 0; i < data.length; i++) {
+                    let modul = data[i];
+                    const clone = template.content.cloneNode(true);
+                    clone.querySelector('.modul-name').textContent = modul.Name;
+                    clone.querySelector('.modul-beschreibung').textContent = modul.Inhalte;
+                    clone.querySelector('.modul-link').href = "module/" + modul.ID + ".html";
+                    liste.appendChild(clone);
+                }
+            }
+        })
+    }
+</script>

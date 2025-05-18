@@ -51,6 +51,7 @@
     margin: 1vh;
     box-shadow: 2px 2px 4px rgb(65, 65, 0.1);
     transition: all 0.2s ease-in-out;
+    min-width: 350px;
 }
 
 .modul:hover {
