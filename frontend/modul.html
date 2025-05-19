@@ -44,17 +44,17 @@
 		<section class="modul">
 			<section class="modul-info">
 				<h3>Modulverantwortlicher:</h3>
-				<p class="modul-verantwortlicher"/>
+				<p class="modul-verantwortlicher"></p>
 				<h3>Workload:</h3>
-				<p class="modul-workload"/>
+				<p class="modul-workload"></p>
 				<h3>Credits:</h3>
-				<p class="modul-credits"/>
+				<p class="modul-credits"></p>
 				<h3>Lernergebnisse:</h3>
-				<p class="modul-lernergebnisse"/>
+				<p class="modul-lernergebnisse"></p>
 				<h3>Inhalte:</h3>
-				<p class="modul-inhalte"/>
+				<p class="modul-inhalte"></p>
 				<h3>Pr&uuml;fungsform:</h3>
-				<p class="modul-pruefungsform"/>
+				<p class="modul-pruefungsform"></p>
 			</section>
 			<section class="modul-bewertung">
 				<form class="fields">
@@ -98,13 +98,10 @@
 			<section class="kommentar">
 				<section class="benutzer-info">
 					<img alt="profilbild" class="profilepicture" src="pictures/dummy.jpg"/>
-					<strong class="benutzername">Andi Arbeit</strong>
+					<strong class="benutzername"></strong>
 				</section>
 				<section class="inhalt">
-					<section class="bewertungstext">
-						Sau cooles Fach! Fand das Pigeon Hole Principle
-						mega interessant!
-					</section>
+					<section class="bewertungstext"></section>
 					<section class="bewertungsvalue">
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
@@ -127,10 +124,11 @@
     document.addEventListener("DOMContentLoaded", function () {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
-        getData(id);
+        getModulData(id);
+        getKommentarData(id);
     });
 
-    function getData(id) {
+    function getModulData(id) {
         ajaxGet(`http://localhost:8000/api/modul/gib/${id}`, (err, data) => {
             if (err) {
                 console.log(err);
@@ -152,11 +150,28 @@
                 modul.querySelector('.modul-pruefungsform').textContent = data.Pruefungsform;
 
                 infos.appendChild(modul);
+            }
+        })
+    }
+
+    function getKommentarData(id) {
+        ajaxGet(`http://localhost:8000/api/bewertungen/modul/gib/${id}`, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                data = JSON.parse(data)
+				console.log("Kommentare:")
+                console.log(data);
 
                 const kommentare = document.getElementById('bewertungsliste')
                 const kommentar_template = document.getElementById('kommentar-template')
-                const kommentar = kommentar_template.content.cloneNode(true)
-				kommentare.appendChild(kommentar)
+                for (let i = 0; i < data.length; i++) {
+                    const komment = data[i];
+                    const kommentar = kommentar_template.content.cloneNode(true)
+                    kommentar.querySelector('.benutzername').textContent = `${komment.Vorname} ${komment.Nachname}`;
+                    kommentar.querySelector('.bewertungstext').textContent = `${komment.Inhalt}`;
+                    kommentare.appendChild(kommentar)
+                }
             }
         })
     }

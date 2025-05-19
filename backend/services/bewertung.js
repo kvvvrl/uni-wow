@@ -23,7 +23,8 @@ serviceRouter.get('/bewertungen/modul/gib/:modul_id', function (request, respons
     console.log('Service bewertung: Client requested one record, id=' + request.params.modul_id);
     const bewertungDao = new BewertungDao(request.app.locals.dbConnection);
     try {
-        var obj = bewertungDao.loadByModule(request.params.modul_id);
+        const id = parseInt(request.params.modul_id);
+        var obj = bewertungDao.loadByModule(id);
         console.log('Service bewertung: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {
@@ -36,7 +37,8 @@ serviceRouter.get('/bewertungen/modul/gib/:modul_id', function (request, respons
 serviceRouter.get('/bewertungen/user/gib/:matnr', function (request, response){
     const bewertungDao = new BewertungDao(request.app.locals.dbConnection);
     try {
-        var obj = bewertungDao.loadByMatnr(request.params.matnr);
+        const id = parseInt(request.params.matnr);
+        var obj = bewertungDao.loadByMatnr(id);
         console.log('Service bewertung: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {
