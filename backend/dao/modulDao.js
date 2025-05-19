@@ -21,9 +21,8 @@ class ModulDao {
         return result;
     }
 
-    //TODO: Typo bei Verantworlicher beheben, soblad in DB behoben
     loadByVerantwortlicher(id) {
-        var sql = 'SELECT * FROM Modul WHERE Verantworlicher=?';
+        var sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
         var statement = this._conn.prepare(sql);
         var result = statement.all(id);
 
