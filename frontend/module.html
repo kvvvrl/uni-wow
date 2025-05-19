@@ -71,10 +71,10 @@
 </html>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        ladeModule();
+        getData();
     });
 
-    function ladeModule() {
+    function getData() {
         ajaxGet("http://localhost:8000/api/modul/alle", (err, data) => {
             if (err) {
                 console.log(err);
@@ -89,7 +89,7 @@
                     const clone = template.content.cloneNode(true);
                     clone.querySelector('.modul-name').textContent = modul.Name;
                     clone.querySelector('.modul-beschreibung').textContent = modul.Inhalte;
-                    clone.querySelector('.modul-link').href = "module/" + modul.ID + ".html";
+                    clone.querySelector('.modul-link').href = `modul.html?id=${modul.id}`;
                     liste.appendChild(clone);
                 }
             }
