@@ -1,2 +1,3 @@
 .vscode/settings.json
 .idx/dev.nix
+node_modules/
