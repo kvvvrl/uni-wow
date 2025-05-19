@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const ModulDao = require('../dao/modulDao.js');
+const DozentDao = require('../dao/dozentDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
 
@@ -10,8 +11,10 @@ serviceRouter.get('/modul/gib/:id', function(request, response) {
     console.log('Service modul: Client requested one record, id=' + request.params.id);
 
     const modulDao = new ModulDao(request.app.locals.dbConnection);
+    const dozentDao = new DozentDao(request.app.locals.dbConnection);
     try {
         var obj = modulDao.loadById(request.params.id);
+        obj.Verantwortlicher = dozentDao.loadById(obj.Verantwortlicher)
         console.log('Service modul: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {

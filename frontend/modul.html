@@ -144,7 +144,7 @@
                 const modul_template = document.getElementById('modul-detail-template');
                 const modul = modul_template.content.cloneNode(true);
                 console.log(data.Verantworlicher);
-                modul.querySelector('.modul-verantwortlicher').textContent = data.Verantworlicher;
+                modul.querySelector('.modul-verantwortlicher').textContent = `${data.Verantwortlicher.Vorname} ${data.Verantwortlicher.Nachname}`;
                 modul.querySelector('.modul-workload').textContent = data.Workload;
                 modul.querySelector('.modul-credits').textContent = data.Credits;
                 modul.querySelector('.modul-lernergebnisse').textContent = data.Lernergebnisse;
@@ -154,10 +154,10 @@
                 infos.appendChild(modul);
 
                 const kommentare = document.getElementById('bewertungsliste')
-                const kommentar_template = document.getElementById('kommentar-template');
-                const kommentar = kommentar_template.content.cloneNode(true);
-				kommentare.appendChild(kommentar);
+                const kommentar_template = document.getElementById('kommentar-template')
+                const kommentar = kommentar_template.content.cloneNode(true)
+				kommentare.appendChild(kommentar)
             }
         })
-    };
+    }
 </script>
