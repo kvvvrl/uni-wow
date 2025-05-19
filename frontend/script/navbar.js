@@ -2,7 +2,7 @@ window.addEventListener("scroll", function () {
     const navbar = document.querySelector("nav"); // select nav element
     const scrollPosition = window.scrollY; //scroll position   
     
-    const navbara = this.document.querySelector("nav a");
+    const navbara = document.querySelectorAll("nav a");
 
     const maxScroll = 500;
 
@@ -13,7 +13,7 @@ window.addEventListener("scroll", function () {
 
     // Setze die Hintergrundfarbe der Navbar mit der berechneten Transparenz
     navbar.style.backgroundColor = `rgba(54, 54, 54, ${opacity})`;
-    navbara.array.forEach(element => {
+    navbara.forEach(element => {
         element.style.color = `rgba(255, 255, 255, ${opacity})`;
     });
 });
