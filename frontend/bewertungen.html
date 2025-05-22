@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8"/>
+	<!--Google Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		  rel="stylesheet">
+	<!---------------->
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!---------------->
+	<link rel="stylesheet" type="text/css" href="style/global_style.css"/>
+	<link
+			rel="stylesheet"
+			type="text/css"
+			href="style/bewertunguebersicht_style.css"
+	/>
+	<title>Meine Bewertungen</title>
+
+	<script src="script/navbar.js"></script>
+	<script src="script/ajax.js"></script>
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li class="navblock1">
+				<a href="index.html">
+					<img src="pictures/Icon_White.svg" alt="icon"/>
+				</a>
+			</li>
+			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
+			<li class="navblock3">
+				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
+			</li>
+			<li class="navblock4"><a href="profil.html">Profil</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<section class="bewertungsliste" id="bewertungsliste">
+		<template class="kommentar-template" id="kommentar-template">
+			<section class="kommentar">
+				<section class="benutzer-info">
+					<strong class="modul"></strong>
+					<i class="fa fa-pencil-square-o" aria-hidden="true"
+					   onclick="alert('Dummy Kommentar bearbeiten')"></i>
+				</section>
+				<section class="inhalt">
+					<section class="bewertungstext"></section>
+					<section class="bewertungsvalue">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					</section>
+				</section>
+				<section class="link">
+					<a class="modul-link">zum Modul<i class="fa fa-share" aria-hidden="true"></i></a>
+				</section>
+			</section>
+		</template>
+	</section>
+</main>
+<footer>
+	<h4>Webanwendungen 2 - Praktikum<br>Backend Boys</h4>
+	<a href="impressum.html">Impressum</a>
+</footer>
+</body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        getData(123456)
+    });
+
+    function getData(id) {
+        ajaxGet(`http://localhost:8000/api//bewertungen/user/gib/${id}`, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                data = JSON.parse(data)
+                console.log(data);
+
+                const kommentare = document.getElementById('bewertungsliste')
+                const kommentar_template = document.getElementById('kommentar-template')
+                for (let i = 0; i < data.length; i++) {
+                    const komment = data[i];
+                    const kommentar = kommentar_template.content.cloneNode(true)
+                    kommentar.querySelector('.modul').textContent = `${komment.Name}`;
+                    kommentar.querySelector('.bewertungstext').textContent = `${komment.Inhalt}`;
+                    kommentar.querySelector('.modul-link').href = `modul.html?id=${komment.id}`
+                    kommentare.appendChild(kommentar)
+                }
+            }
+        })
+    }
+</script>
