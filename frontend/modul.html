@@ -20,24 +20,10 @@
 	<script src="script/ajax.js"></script>
 </head>
 <body>
-<header>
-	<nav>
-		<ul>
-			<li class="navblock1">
-				<a href="index.html">
-					<img src="pictures/Icon_White.svg" alt="icon"/>
-				</a>
-			</li>
-			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
-			<li class="navblock3">
-				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
-			</li>
-			<li class="navblock4"><a href="profil.html">Profil</a></li>
-		</ul>
-	</nav>
+<header id="nav">
 </header>
 <main class="moduldetail" id="moduldetail">
-	<h1 class="ueberschrift" id="ueberschrift">Mathematik 2</h1>
+	<h1 class="ueberschrift" id="ueberschrift"></h1>
 	<section class="modul-infos" id="modul-infos">
 	</section>
 	<template class="modul-detail-template" id="modul-detail-template">
@@ -122,6 +108,7 @@
 </html>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        getNavbar();
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
         getModulData(id);
@@ -175,4 +162,10 @@
             }
         })
     }
+
+    function getNavbar(){
+        fetch('/uni-wow/frontend/navbar.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('nav').innerHTML = html);
+	}
 </script>
