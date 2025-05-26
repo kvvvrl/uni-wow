@@ -82,6 +82,7 @@
 
 hr {
     margin-bottom: 2vh;
+    color: #424141;
 }
 
 h3 {
@@ -114,4 +115,8 @@ h3 {
     overflow: hidden;
     text-overflow: ellipsis;
 
+}
+
+.modul-bewertung-value {
+    white-space: nowrap;
 }
