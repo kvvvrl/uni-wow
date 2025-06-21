@@ -1,4 +1,6 @@
 const helper = require('../helper.js');
+const DozentDao = require('../dao/dozentDao.js');
+const BewertungDao = require('./bewertungDao.js');
 
 class ModulDao {
 
@@ -11,6 +13,9 @@ class ModulDao {
     }
 
     loadById(id) {
+        const dozentDao = new DozentDao(this._conn);
+        const bewertungDao = new BewertungDao(this._conn);
+
         var sql = 'SELECT * FROM Modul WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
@@ -18,10 +23,13 @@ class ModulDao {
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
 
+        result.Verantwortlicher = dozentDao.loadById(result.Verantwortlicher);
+        result.Score = bewertungDao.loadScoreById(result.id) || 0;
         return result;
     }
 
     loadByVerantwortlicher(id) {
+        const bewertungDao = new BewertungDao(this._conn);
         var sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
         var statement = this._conn.prepare(sql);
         var result = statement.all(id);
@@ -29,10 +37,16 @@ class ModulDao {
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
 
+        result.forEach(item => {
+            item.Score = bewertungDao.loadScoreById(item.id) || 0;
+        });
+
         return result;
     }
 
     loadAll() {
+        const dozentDao = new DozentDao(this._conn);
+        const bewertungDao = new BewertungDao(this._conn);
         var sql = 'SELECT * FROM Modul';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
@@ -40,9 +54,15 @@ class ModulDao {
         if (helper.isArrayEmpty(result)) 
             return [];
 
+        result.forEach(item => {
+            item.Verantwortlicher = dozentDao.loadById(item.Verantwortlicher);
+        });
+        result.forEach(item => {
+            item.Score = bewertungDao.loadScoreById(item.id) || 0;
+        });
+
         return result;
     }
- 
     toString() {
         console.log('modulDao [_conn=' + this._conn + ']');
     }

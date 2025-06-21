@@ -37,7 +37,11 @@ try {
     app.locals.dbConnection = dbConnection;
 
     console.log('Binding middleware...');
-    app.use(express.static(__dirname + '/public'))
+    // app.use(express.static(__dirname + '/public'))
+
+    const path = require('path');
+   app.use(express.static(path.join(__dirname, '../frontend')));
+
     app.use(fileUpload({
         createParentPath: true,
         limits: {

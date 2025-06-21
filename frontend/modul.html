@@ -18,6 +18,7 @@
 	<!--Script für Nav-->
 	<script src="script/navbar.js"></script>
 	<script src="script/ajax.js"></script>
+	<script src="script/stars.js"></script>
 </head>
 <body>
 <header id="nav">
@@ -47,19 +48,19 @@
 					<section>
 						<h3><label for="note">Note:</label></h3>
 						<select name="note" id="note">
-							<option value="eins">1</option>
-							<option value="eins-drei">1.3</option>
-							<option value="eins-sieben">1.7</option>
-							<option value="zwei">2</option>
-							<option value="zwei-drei">2.3</option>
-							<option value="zwei-sieben">2.7</option>
-							<option value="drei">3</option>
-							<option value="drei-drei">3.3</option>
-							<option value="drei-sieben">3.7</option>
-							<option value="vier">4</option>
-							<option value="vier-drei">4.3</option>
-							<option value="vier-sieben">4.7</option>
-							<option value="fuenf">5</option>
+							<option value="1.0">1</option>
+							<option value="1.3">1.3</option>
+							<option value="1.7">1.7</option>
+							<option value="2.0">2</option>
+							<option value="2.3">2.3</option>
+							<option value="2.7">2.7</option>
+							<option value="3.0">3</option>
+							<option value="3.3">3.3</option>
+							<option value="3.7">3.7</option>
+							<option value="4.0">4</option>
+							<option value="4.3">4.3</option>
+							<option value="4.7">4.7</option>
+							<option value="5.0">5</option>
 						</select>
 					</section>
 					<section class="bewertung">
@@ -89,11 +90,11 @@
 				<section class="inhalt">
 					<section class="bewertungstext"></section>
 					<section class="bewertungsvalue">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
+						<span class="fa fa-star star"></span>
 					</section>
 				</section>
 			</section>
@@ -107,65 +108,133 @@
 </footer>
 </html>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        getNavbar();
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-        getModulData(id);
-        getKommentarData(id);
-    });
+	let selectedScore = 0; // global, damit überall verfügbar
 
-    function getModulData(id) {
-        ajaxGet(`http://localhost:8000/api/modul/gib/${id}`, (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                data = JSON.parse(data)
-                console.log(data);
+	function getModulData(id) {
+		ajaxGet(`http://localhost:8000/api/modul/gib/${id}`, (err, data) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
 
-                document.getElementById('ueberschrift').innerHTML = data.Name;
+			data = JSON.parse(data);
+			document.getElementById('ueberschrift').textContent = data.Name;
 
-                const infos = document.getElementById('modul-infos')
-                const modul_template = document.getElementById('modul-detail-template');
-                const modul = modul_template.content.cloneNode(true);
-                console.log(data.Verantworlicher);
-                modul.querySelector('.modul-verantwortlicher').textContent = `${data.Verantwortlicher.Vorname} ${data.Verantwortlicher.Nachname}`;
-                modul.querySelector('.modul-workload').textContent = data.Workload;
-                modul.querySelector('.modul-credits').textContent = data.Credits;
-                modul.querySelector('.modul-lernergebnisse').textContent = data.Lernergebnisse;
-                modul.querySelector('.modul-inhalte').textContent = data.Inhalte;
-                modul.querySelector('.modul-pruefungsform').textContent = data.Pruefungsform;
+			const infos = document.getElementById('modul-infos');
+			const modul_template = document.getElementById('modul-detail-template');
+			const modul = modul_template.content.cloneNode(true);
 
-                infos.appendChild(modul);
-            }
-        })
-    }
+			modul.querySelector('.modul-verantwortlicher').textContent = `${data.Verantwortlicher.Vorname} ${data.Verantwortlicher.Nachname}`;
+			modul.querySelector('.modul-workload').textContent = data.Workload;
+			modul.querySelector('.modul-credits').textContent = data.Credits;
+			modul.querySelector('.modul-lernergebnisse').textContent = data.Lernergebnisse;
+			modul.querySelector('.modul-inhalte').textContent = data.Inhalte;
+			modul.querySelector('.modul-pruefungsform').textContent = data.Pruefungsform;
 
-    function getKommentarData(id) {
-        ajaxGet(`http://localhost:8000/api/bewertungen/modul/gib/${id}`, (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                data = JSON.parse(data)
-				console.log("Kommentare:")
-                console.log(data);
+			infos.appendChild(modul);
 
-                const kommentare = document.getElementById('bewertungsliste')
-                const kommentar_template = document.getElementById('kommentar-template')
-                for (let i = 0; i < data.length; i++) {
-                    const komment = data[i];
-                    const kommentar = kommentar_template.content.cloneNode(true)
-                    kommentar.querySelector('.benutzername').textContent = `${komment.Vorname} ${komment.Nachname}`;
-                    kommentar.querySelector('.bewertungstext').textContent = `${komment.Inhalt}`;
-                    kommentare.appendChild(kommentar)
-                }
-            }
-        })
-    }
+			// Eventlistener für das Formular nach DOM-Einfügung setzen
+			const form = document.querySelector('.modul-bewertung form');
+			if (form) {
+				form.addEventListener('submit', function (event) {
+					event.preventDefault();
 
-    function getNavbar(){
-        fetch('/uni-wow/frontend/navbar.html')
-            .then(res => res.text())
-            .then(html => document.getElementById('nav').innerHTML = html);
+					const note = parseFloat(document.getElementById('note').value);
+					const bewertung = document.getElementById('bewertung').value;
+
+					if (bewertung.trim() === '') {
+						alert('Bitte geben Sie eine Bewertung ein.');
+						return;
+					}
+					if (selectedScore === 0) {
+						alert('Bitte vergeben Sie eine Sternebewertung.');
+						return;
+					}
+
+					const payload = {
+						User_Matnr: 123456, // Beispiel-Matrikelnummer, sollte dynamisch gesetzt werden
+						Modul_id: parseInt(id),
+						note: note,
+						Inhalt: bewertung,
+						Score: selectedScore
+					};
+
+					ajaxPost('http://localhost:8000/api/bewertung', payload, (err, response) => {
+						if (err) {
+							console.error(err);
+							alert('Fehler beim Speichern der Bewertung.');
+						} else {
+							alert('Bewertung erfolgreich gespeichert!');
+							form.reset();
+							selectedScore = 0;
+							document.querySelectorAll('.star-rating .star').forEach(s => s.classList.remove('checked'));
+						}
+					});
+				});
+			}
+		});
 	}
+
+	function getKommentarData(id) {
+		ajaxGet(`http://localhost:8000/api/bewertungen/modul/gib/${id}`, (err, data) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			data = JSON.parse(data);
+			const kommentare = document.getElementById('bewertungsliste');
+			const kommentar_template = document.getElementById('kommentar-template');
+
+			for (let komment of data) {
+				const fragment = kommentar_template.content.cloneNode(true);
+				const kommentar = fragment.querySelector('.kommentar'); // jetzt echtes Element
+
+				kommentar.querySelector('.benutzername').textContent = `${komment.Vorname} ${komment.Nachname}`;
+				kommentar.querySelector('.bewertungstext').textContent = `${komment.Inhalt}`;
+
+				// Score-basiert Sterne setzen
+				const score = parseFloat(komment.Score);
+				const stars = kommentar.querySelectorAll('.bewertungsvalue span.fa');
+				if (stars.length === 5 && !isNaN(score)) {
+					setStarRating(score, stars);
+				} else {
+					console.warn("Score/Stars fehlen:", komment, stars);
+				}
+
+				kommentare.appendChild(fragment); // GANZ ZUM SCHLUSS anhängen
+			}
+		});
+	}
+
+
+	function getNavbar() {
+		fetch('/navbar.html')
+			.then(res => res.text())
+			.then(html => document.getElementById('nav').innerHTML = html);
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		getNavbar();
+
+		const params = new URLSearchParams(window.location.search);
+		const id = params.get('id');
+		getModulData(id);
+		getKommentarData(id);
+
+		// Sternebewertung: globales Click-Handling
+		document.addEventListener('click', function (e) {
+			if (
+				e.target.classList.contains('star') &&
+				e.target.closest('.star-rating')
+			) {
+				const starsrate = Array.from(document.querySelectorAll('.star-rating .fa-star'));
+				selectedScore = starsrate.indexOf(e.target) + 1;
+
+				starsrate.forEach((star, index) => {
+					star.classList.toggle('checked', index < selectedScore);
+				});
+			}
+		});
+
+	});
 </script>
