@@ -33,7 +33,7 @@ class BewertungDao {
     }
 
     loadByMatnr(id){
-        var sql = 'SELECT Bewertung.Inhalt, Modul.Name, Modul.id FROM Bewertung LEFT JOIN Modul ON Bewertung.Modul_id = Modul.id WHERE Bewertung.User_Matnr=?';
+        var sql = 'SELECT Bewertung.Inhalt, Modul.Name, Modul.id,Bewertung.Score FROM Bewertung LEFT JOIN Modul ON Bewertung.Modul_id = Modul.id WHERE Bewertung.User_Matnr=?';
         var statement = this._conn.prepare(sql);
         var result = statement.all(id);
 
@@ -54,6 +54,18 @@ class BewertungDao {
         return result.Score;
     }
 
+    insert(User_Matnr,Score,Inhalt,Modul_id) {
+        var sql = 'INSERT INTO Bewertung (User_Matnr, Score, Inhalt, Modul_id) VALUES (?, ?, ?, ?)';
+        var statement = this._conn.prepare(sql);
+        var params = [User_Matnr, Score, Inhalt, Modul_id];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Insert failed for Bewertung with User_Matnr=' + User_Matnr + ', Modul_id=' + Modul_id);
+
+        return this.loadById(result.lastInsertRowid);
+
+    }
  
     toString() {
         console.log('bewertungDao [_conn=' + this._conn + ']');

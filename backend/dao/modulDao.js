@@ -14,6 +14,7 @@ class ModulDao {
 
     loadById(id) {
         const dozentDao = new DozentDao(this._conn);
+        const bewertungDao = new BewertungDao(this._conn);
 
         var sql = 'SELECT * FROM Modul WHERE id=?';
         var statement = this._conn.prepare(sql);
@@ -23,16 +24,22 @@ class ModulDao {
             throw new Error('No Record (Modul) found by id=' + id);
 
         result.Verantwortlicher = dozentDao.loadById(result.Verantwortlicher);
+        result.Score = bewertungDao.loadScoreById(result.id) || 0;
         return result;
     }
 
     loadByVerantwortlicher(id) {
+        const bewertungDao = new BewertungDao(this._conn);
         var sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
         var statement = this._conn.prepare(sql);
         var result = statement.all(id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
+
+        result.forEach(item => {
+            item.Score = bewertungDao.loadScoreById(item.id) || 0;
+        });
 
         return result;
     }
@@ -56,7 +63,6 @@ class ModulDao {
 
         return result;
     }
- 
     toString() {
         console.log('modulDao [_conn=' + this._conn + ']');
     }

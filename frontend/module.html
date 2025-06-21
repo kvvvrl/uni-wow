@@ -20,6 +20,7 @@
 	<title>Uni-WOW</title>
 	<script src="script/navbar.js"></script>
 	<script src="script/ajax.js"></script>
+	<script src="script/stars.js"></script>
 </head>
 <body>
 <header id="nav"></header>
@@ -32,11 +33,11 @@
 				<section class="modul-bewertung">
 					<h2 class="modul-name"></h2>
 					<section class="modul-bewertung-value">
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
 					</section>
 				</section>
 				<hr/>
@@ -79,19 +80,8 @@
 					
 					// Score-basiert Sterne setzen
 					const score = parseFloat(modul.Score);
-					const stars = clone.querySelectorAll('.modul-bewertung-value .fa-star');
-
-					stars.forEach((star, index) => {
-						const starPosition = index + 1;
-						if (score >= starPosition) {
-							star.classList.add('checked'); // volle Sterne
-						} else if (score >= starPosition - 0.5) {
-							star.classList.add('half-checked'); // halber Stern
-						} else {
-							star.classList.remove('checked', 'half-checked');
-						}
-					});
-
+					const stars = clone.querySelectorAll('.modul-bewertung-value .fa');
+					setStarRating(score, stars);
 
                     liste.appendChild(clone);
                 }

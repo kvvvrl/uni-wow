@@ -21,6 +21,7 @@
 
 	<script src="script/navbar.js"></script>
 	<script src="script/ajax.js"></script>
+	<script src="script/stars.js"></script>
 </head>
 <body>
 <header id="nav">
@@ -37,11 +38,11 @@
 				<section class="inhalt">
 					<section class="bewertungstext"></section>
 					<section class="bewertungsvalue">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
 					</section>
 				</section>
 				<section class="link">
@@ -64,7 +65,7 @@
     });
 
     function getData(id) {
-        ajaxGet(`http://localhost:8000/api//bewertungen/user/gib/${id}`, (err, data) => {
+        ajaxGet(`http://localhost:8000/api/bewertungen/user/gib/${id}`, (err, data) => {
             if (err) {
                 console.log(err);
             } else {
@@ -74,13 +75,29 @@
                 const kommentare = document.getElementById('bewertungsliste')
                 const kommentar_template = document.getElementById('kommentar-template')
                 for (let i = 0; i < data.length; i++) {
-                    const komment = data[i];
-                    const kommentar = kommentar_template.content.cloneNode(true)
-                    kommentar.querySelector('.modul').textContent = `${komment.Name}`;
-                    kommentar.querySelector('.bewertungstext').textContent = `${komment.Inhalt}`;
-                    kommentar.querySelector('.modul-link').href = `modul.html?id=${komment.id}`
-                    kommentare.appendChild(kommentar)
-                }
+					const komment = data[i];
+
+					// Fragment klonen
+					const fragment = kommentar_template.content.cloneNode(true);
+					const kommentar = fragment.querySelector('.kommentar'); // echtes DOM-Element im Fragment
+
+					kommentar.querySelector('.modul').textContent = komment.Name;
+					kommentar.querySelector('.bewertungstext').textContent = komment.Inhalt;
+					kommentar.querySelector('.modul-link').href = `modul.html?id=${komment.id}`;
+
+					// Score-basiert Sterne setzen
+					const score = parseFloat(komment.Score);
+					const stars = kommentar.querySelectorAll('.bewertungsvalue span.fa');
+					if (stars.length === 5 && !isNaN(score)) {
+						setStarRating(score, stars);
+					} else {
+						console.warn("Score/Stars fehlen:", komment, stars);
+					}
+
+					// Fragment anhängen
+					kommentare.appendChild(fragment);
+				}
+
             }
         })
     }
