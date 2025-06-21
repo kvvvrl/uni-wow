@@ -22,7 +22,7 @@ class BewertungDao {
     }
 
     loadByModule(id){
-        var sql = 'SELECT Bewertung.Inhalt, User.Vorname, User.Nachname FROM Bewertung LEFT JOIN User on Bewertung.User_Matnr = User.Matnr WHERE Modul_id = ?';
+        var sql = 'SELECT Bewertung.Inhalt, User.Vorname, User.Nachname,Bewertung.Score FROM Bewertung LEFT JOIN User on Bewertung.User_Matnr = User.Matnr WHERE Modul_id = ?';
         var statement = this._conn.prepare(sql);
         var result = statement.all(id);
 
@@ -42,6 +42,18 @@ class BewertungDao {
 
         return result;
     }
+
+    loadScoreById(id) {
+        var sql = 'SELECT AVG(Score) AS Score FROM Bewertung WHERE Modul_id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id); 
+
+        if (helper.isUndefined(result))
+            throw new Error('No Record (Bewertung) found by id=' + id);
+        
+        return result.Score;
+    }
+
  
     toString() {
         console.log('bewertungDao [_conn=' + this._conn + ']');
