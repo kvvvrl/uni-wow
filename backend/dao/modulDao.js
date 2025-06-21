@@ -1,4 +1,5 @@
 const helper = require('../helper.js');
+const DozentDao = require('../dao/dozentDao.js');
 
 class ModulDao {
 
@@ -11,6 +12,8 @@ class ModulDao {
     }
 
     loadById(id) {
+        const dozentDao = new DozentDao(this._conn);
+
         var sql = 'SELECT * FROM Modul WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
@@ -18,6 +21,7 @@ class ModulDao {
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
 
+        result.Verantwortlicher = dozentDao.loadById(result.Verantwortlicher);
         return result;
     }
 
@@ -33,12 +37,17 @@ class ModulDao {
     }
 
     loadAll() {
+        const dozentDao = new DozentDao(this._conn);
         var sql = 'SELECT * FROM Modul';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
+
+        result.forEach(item => {
+            item.Verantwortlicher = dozentDao.loadById(item.Verantwortlicher);
+        });
 
         return result;
     }
