@@ -20,24 +20,10 @@
 	<title>Uni-WOW</title>
 	<script src="script/navbar.js"></script>
 	<script src="script/ajax.js"></script>
+	<script src="script/stars.js"></script>
 </head>
 <body>
-<header>
-	<nav>
-		<ul>
-			<li class="navblock1">
-				<a href="index.html">
-					<img src="pictures/Icon_White.svg" alt="icon"/>
-				</a>
-			</li>
-			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
-			<li class="navblock3">
-				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
-			</li>
-			<li class="navblock4"><a href="profil.html">Profil</a></li>
-		</ul>
-	</nav>
-</header>
+<header id="nav"></header>
 <main>
 	<section class= "modul-liste" id="modul-liste">
 	</section>
@@ -45,19 +31,19 @@
 		<a class="modul-link">
 			<section class="modul">
 				<section class="modul-bewertung">
-					<h2 class="modul-name"/>
-					<section>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
+					<h2 class="modul-name"></h2>
+					<section class="modul-bewertung-value">
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
+						<span class="fa fa-star-o"></span>
 					</section>
 				</section>
 				<hr/>
 				<section class="beschreibung-note">
-					<p class="modul-beschreibung"/>
-					<h3 class="modul-note"/>
+					<p class="modul-beschreibung"></p>
+					<h3 class="modul-note"></h3>
 				</section>
 			</section>
 		</a>
@@ -71,6 +57,7 @@
 </html>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        getNavbar()
         getData();
     });
 
@@ -90,9 +77,20 @@
                     clone.querySelector('.modul-name').textContent = modul.Name;
                     clone.querySelector('.modul-beschreibung').textContent = modul.Inhalte;
                     clone.querySelector('.modul-link').href = `modul.html?id=${modul.id}`;
+					
+					// Score-basiert Sterne setzen
+					const score = parseFloat(modul.Score);
+					const stars = clone.querySelectorAll('.modul-bewertung-value .fa');
+					setStarRating(score, stars);
+
                     liste.appendChild(clone);
                 }
             }
         })
+    }
+	function getNavbar(){
+        fetch('/navbar.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('nav').innerHTML = html);
     }
 </script>

@@ -5,7 +5,7 @@
 
 
 /////////////////
-// workaround / bugfix for linux systems
+// workaround / bugfix for linux systems>
 Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 /////////////////
 
@@ -37,7 +37,11 @@ try {
     app.locals.dbConnection = dbConnection;
 
     console.log('Binding middleware...');
-    app.use(express.static(__dirname + '/public'))
+    // app.use(express.static(__dirname + '/public'))
+
+    const path = require('path');
+   app.use(express.static(path.join(__dirname, '../frontend')));
+
     app.use(fileUpload({
         createParentPath: true,
         limits: {
