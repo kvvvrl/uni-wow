@@ -119,4 +119,17 @@
             });
         }
     });
+	document.getElementById('search').addEventListener('input', function() {
+    const suchbegriff = this.value.toLowerCase();
+    const module = document.querySelectorAll('.modul-liste .modul-link');
+
+    module.forEach(modulLink => {
+        const text = modulLink.textContent.toLowerCase();
+        if (text.includes(suchbegriff)) {
+            modulLink.style.display = '';
+        } else {
+            modulLink.style.display = 'none';
+        }
+    });
+});
 </script>
