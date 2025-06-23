@@ -12,13 +12,13 @@
     "better-sqlite3": "11.0.0",
     "body-parser": "1.20.2",
     "cors": "2.8.5",
-    "express": "4.19.2",
+    "express": "^4.21.2",
     "express-fileupload": "1.5.0",
+    "jsonwebtoken": "9.0.2",
     "lodash": "4.17.21",
-    "luxon": "3.4.4",
+    "luxon": "^3.4.4",
     "md5": "2.3.0",
     "morgan": "1.10.0",
-    "nodemon": "3.1.4",
-    "jsonwebtoken": "9.0.2"
+    "nodemon": "3.1.4"
   }
 }

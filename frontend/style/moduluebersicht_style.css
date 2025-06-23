@@ -120,3 +120,64 @@ h3 {
 .modul-bewertung-value {
     white-space: nowrap;
 }
+
+.filter-row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 1vh;
+    box-sizing: border-box;
+    gap: 5vh;
+
+}
+.filter-row input{
+    width: 35%;
+    height: 5vh;
+    padding: 0.5vh;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.filter-icon {
+    width: 5.5vh;
+    height: 5.5vh;
+}
+.filter-icon:hover {
+    opacity: 0.8;
+}
+
+.filter-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #0002;
+    padding: 16px;
+    z-index: 1000;
+    min-width: 180px;
+}
+
+.filter-dropdown:hover .filter-menu {
+    display: block;
+}
+
+.filter-option {
+    display: block;
+    color: #222;
+    text-decoration: none;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.filter-option:hover {
+    background: #f0f0f0;
+}
