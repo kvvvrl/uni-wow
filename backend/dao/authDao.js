@@ -45,7 +45,6 @@ class UserDao {
 
 
     hasaccess(Matnr, Passwort) {
-        console.log('Service User: Client requested hasacces');
         var sql = 'SELECT Matnr FROM User WHERE Matnr=? AND Passwort=?';
         var statement = this._conn.prepare(sql);
         var params = [Matnr, Passwort];

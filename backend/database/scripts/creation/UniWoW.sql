@@ -16,8 +16,7 @@ CREATE TABLE "User"(
   "Matnr" INTEGER NOT NULL,
   "Vorname" TEXT NOT NULL,
   "Nachname" TEXT NOT NULL,
-  "PasswdHash" TEXT NOT NULL,
-  "Salt" TEXT NOT NULL,
+  "Passwort" TEXT NOT NULL,
   "ETCS" FLOAT NOT NULL DEFAULT 0.0,
   "Notenschnitt" FLOAT,
   PRIMARY KEY("Matnr")

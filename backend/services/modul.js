@@ -1,6 +1,7 @@
 const helper = require('../helper.js');
 const ModulDao = require('../dao/modulDao.js');
 const express = require('express');
+const authHelper = require('../authHelper.js');
 var serviceRouter = express.Router();
 
 console.log('- Service modul');
@@ -25,13 +26,18 @@ serviceRouter.get('/modul/alle', function(request, response) {
     console.log('Service modul: Client requested all records');
 
     const modulDao = new ModulDao(request.app.locals.dbConnection);
-    try {
-        var arr = modulDao.loadAll();
-        console.log('Service modul: Records loaded, count=' + arr.length);
-        response.status(200).json(arr);
-    } catch (ex) {
-        console.error('Service modul: Error loading record by id. Exception occured: ' + ex.message);
-        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    console.log(request.headers)
+    if(authHelper.authUser(request.header('authorization'))) {
+        try {
+            var arr = modulDao.loadAll();
+            console.log('Service modul: Records loaded, count=' + arr.length);
+            response.status(200).json(arr);
+        } catch (ex) {
+            console.error('Service modul: Error loading record by id. Exception occured: ' + ex.message);
+            response.status(400).json({'fehler': true, 'nachricht': ex.message});
+        }
+    } else {
+        response.status(401).json({'fehler': true, 'nachricht': 'Nicht Authentifiziert'});
     }
 });
 

@@ -1,6 +1,11 @@
-function ajaxGet(url, callback) {
+function ajaxGet(url, callback, withToken= true) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
+
+    if(withToken){
+        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('JWT'));
+        xhr.setRequestHeader('Content-Type', 'application/json');
+    }
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -15,10 +20,14 @@ function ajaxGet(url, callback) {
     xhr.send();
 }
 
-function ajaxPost(url, data, callback) {
+function ajaxPost(url, data, callback, withToken= true) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    if(withToken){
+        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('JWT'));
+        xhr.setRequestHeader('Content-Type', 'application/json');
+    }
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
