@@ -2,7 +2,7 @@ const helper = require('../helper.js');
 const ModulDao = require('../dao/modulDao.js');
 const express = require('express');
 const authHelper = require('../authHelper.js');
-var serviceRouter = express.Router();
+let serviceRouter = express.Router();
 
 console.log('- Service modul');
 
@@ -15,7 +15,7 @@ serviceRouter.get('/modul/gib/:id', function(request, response) {
 
     if(authHelper.authUser(token)) {
         try {
-            var obj = modulDao.loadById(request.params.id);
+            let obj = modulDao.loadById(request.params.id, authHelper.getUser(token));
             console.log('Service modul: Record loaded');
             response.status(200).json(obj);
         } catch (ex) {
@@ -38,7 +38,7 @@ serviceRouter.get('/modul/alle', function(request, response) {
     if(authHelper.authUser(token)) {
         try {
             const matnr = authHelper.getUser(token)
-            var arr = modulDao.loadAll(matnr);
+            let arr = modulDao.loadAll(matnr);
             console.log('Service modul: Records loaded, count=' + arr.length);
             response.status(200).json(arr);
         } catch (ex) {
@@ -60,7 +60,7 @@ serviceRouter.get('/modul/verantwortlicher/:id', function(request, response) {
 
     if(authHelper.authUser(token)) {
         try {
-            var arr = modulDao.loadByVerantwortlicher(request.params.id);
+            let arr = modulDao.loadByVerantwortlicher(request.params.id);
             console.log('Service modul: Records loaded, count=' + arr.length);
             response.status(200).json(arr);
         } catch (ex) {

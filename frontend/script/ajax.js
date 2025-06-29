@@ -9,6 +9,11 @@ function ajaxGet(url, callback, withToken= true) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
+
+            if (withToken && xhr.status === 401) {
+                window.location.href = 'login.html'
+            }
+
             if (xhr.status === 200) {
                 callback(null, xhr.responseText);
             } else {
@@ -31,6 +36,11 @@ function ajaxPost(url, data, callback, withToken= true) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
+
+            if (withToken && xhr.status === 401) {
+                window.location.href = 'login.html'
+            }
+
             if (xhr.status === 200) {
                 callback(null, xhr.responseText);
             } else {

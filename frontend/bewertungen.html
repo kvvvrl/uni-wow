@@ -60,10 +60,10 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         getNavbar()
-        getData(123456)
+        getData()
     });
     function getData(id) {
-        ajaxGet(`http://localhost:8000/api/bewertungen/user/gib/${id}`, (err, data) => {
+        ajaxGet(`http://localhost:8000/api/bewertungen/user/gib`, (err, data) => {
             if (err) {
                 console.log(err);
             } else {

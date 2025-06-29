@@ -11,9 +11,9 @@ class UserDao {
     }
 
     loadById(Matnr) {
-        var sql = 'SELECT * FROM User WHERE Matnr=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.get(Matnr);
+        let sql = 'SELECT * FROM User WHERE Matnr=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(Matnr);
 
         if (helper.isUndefined(result))
             throw new Error('No Record (User) found by Matnr=' + Matnr);
@@ -22,9 +22,9 @@ class UserDao {
     }
  
     loadAll() {
-        var sql = 'SELECT * FROM User';
-        var statement = this._conn.prepare(sql);
-        var result = statement.all();
+        let sql = 'SELECT * FROM User';
+        let statement = this._conn.prepare(sql);
+        let result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
@@ -33,9 +33,9 @@ class UserDao {
     }
 
     exists(Matnr) {
-        var sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.get(Matnr);
+        let sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(Matnr);
 
         if (result.cnt == 1)
             return true;
@@ -45,10 +45,10 @@ class UserDao {
 
 
     hasaccess(Matnr, Passwort) {
-        var sql = 'SELECT Matnr FROM User WHERE Matnr=? AND Passwort=?';
-        var statement = this._conn.prepare(sql);
-        var params = [Matnr, Passwort];
-        var result = statement.get(params);
+        let sql = 'SELECT Matnr FROM User WHERE Matnr=? AND Passwort=?';
+        let statement = this._conn.prepare(sql);
+        let params = [Matnr, Passwort];
+        let result = statement.get(params);
 
         if (helper.isUndefined(result)) 
             throw new Error('User has no access');
@@ -59,10 +59,10 @@ class UserDao {
     create(Matnr = null, Vorname = '', Nachname = '', Passwort = '',Salt='') {
         //TODO:
         //hashpasswort and store in db
-        var sql = 'INSERT INTO User (Matnr,Vorname,Nachname,Passwort,Salt) VALUES (?,?,?,?,?)';
-        var statement = this._conn.prepare(sql);
-        var params = [Matnr, Vorname, Nachname, Passwort,Salt];
-        var result = statement.run(params);
+        let sql = 'INSERT INTO User (Matnr,Vorname,Nachname,Passwort,Salt) VALUES (?,?,?,?,?)';
+        let statement = this._conn.prepare(sql);
+        let params = [Matnr, Vorname, Nachname, Passwort,Salt];
+        let result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Could not insert new Record. Data: ' + params);
@@ -74,15 +74,15 @@ class UserDao {
         //TODO:
         //hashpasswort and store in db
         if (helper.isNull(neuespasswort)) {
-            var sql = 'UPDATE User SET Vorname=?, Nachname=? WHERE Matnr=?';
-            var statement = this._conn.prepare(sql);
-            var params = [Vorname, Nachname, Matnr];
+            let sql = 'UPDATE User SET Vorname=?, Nachname=? WHERE Matnr=?';
+            let statement = this._conn.prepare(sql);
+            let params = [Vorname, Nachname, Matnr];
         } else {
-            var sql = 'UPDATE User SET Vorname=?, Nachname=?, Passwort=? WHERE Matnr=?';
-            var statement = this._conn.prepare(sql);
-            var params = [Vorname, Nachname, neuespasswort, Matnr];
+            let sql = 'UPDATE User SET Vorname=?, Nachname=?, Passwort=? WHERE Matnr=?';
+            let statement = this._conn.prepare(sql);
+            let params = [Vorname, Nachname, neuespasswort, Matnr];
         }
-        var result = statement.run(params);
+        let result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
@@ -92,9 +92,9 @@ class UserDao {
 
     delete(Matnr) {
         try {
-            var sql = 'DELETE FROM User WHERE Matnr=?';
-            var statement = this._conn.prepare(sql);
-            var result = statement.run(Matnr);
+            let sql = 'DELETE FROM User WHERE Matnr=?';
+            let statement = this._conn.prepare(sql);
+            let result = statement.run(Matnr);
 
             if (result.changes != 1)
                 throw new Error('Could not delete Record by Matnr=' + Matnr);

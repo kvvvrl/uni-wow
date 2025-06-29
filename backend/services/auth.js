@@ -3,7 +3,7 @@ const AuthDao = require('../dao/authDao.js');
 const UserDao = require('../dao/userDao.js');
 const express = require('express');
 const authHelper = require('../authHelper.js');
-var serviceRouter = express.Router();
+let serviceRouter = express.Router();
 const SECRET = "DasIstSicher"
 
 console.log('- Service auth');

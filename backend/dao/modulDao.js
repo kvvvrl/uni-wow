@@ -12,13 +12,18 @@ class ModulDao {
         return this._conn;
     }
 
-    loadById(id) {
+    loadById(id, matnr) {
         const dozentDao = new DozentDao(this._conn);
         const bewertungDao = new BewertungDao(this._conn);
 
-        var sql = 'SELECT * FROM Modul WHERE id=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.get(id);
+        let sql =    'SELECT Modul.*, Note FROM Modul ' +
+            'LEFT JOIN (' +
+            'SELECT * from UserToModul WHERE User_Matnr = ?)' +
+            'UserToModul ON Modul.id = UserToModul.Modul_id ' +
+            'WHERE Modul.id = ?';
+
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(matnr, id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
@@ -30,9 +35,9 @@ class ModulDao {
 
     loadByVerantwortlicher(id) {
         const bewertungDao = new BewertungDao(this._conn);
-        var sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.all(id);
+        let sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.all(id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
@@ -47,13 +52,13 @@ class ModulDao {
     loadAll(matNr) {
         const dozentDao = new DozentDao(this._conn);
         const bewertungDao = new BewertungDao(this._conn);
-        var sql =    'SELECT Modul.*, Note FROM Modul ' +
+        let sql =    'SELECT Modul.*, Note FROM Modul ' +
             'LEFT JOIN (' +
             'SELECT * from UserToModul WHERE User_Matnr = ?)' +
             'UserToModul ON Modul.id = UserToModul.Modul_id';
 
-        var statement = this._conn.prepare(sql);
-        var result = statement.all(matNr);
+        let statement = this._conn.prepare(sql);
+        let result = statement.all(matNr);
 
         if (helper.isArrayEmpty(result)) 
             return [];

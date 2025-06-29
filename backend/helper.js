@@ -108,7 +108,7 @@ module.exports.isSQLDateTimeFormat = function(val) {
 // parses a german datetime string to a datetime object
 // if not valid, returns null, otherwise the object
 module.exports.parseGermanDateTimeString = function(input) {
-    var datetimeobj = null;
+    let datetimeobj = null;
     if (input.length > 10) 
         datetimeobj = DateTime.fromFormat(input, 'dd.MM.yyyy HH:mm:ss');
     else 
@@ -123,7 +123,7 @@ module.exports.parseGermanDateTimeString = function(input) {
 // parses a sql datetime string to a datetime object
 // if not valid, returns null, otherwise the object
 module.exports.parseSQLDateTimeString = function(input) {
-    var datetimeobj = DateTime.fromSQL(input);
+    let datetimeobj = DateTime.fromSQL(input);
 
     if (!datetimeobj.isValid) 
         return null;
@@ -184,7 +184,7 @@ module.exports.compareDateTimes = function(leftdatetime, rightdatetime) {
     if (!this.isDateTime(leftdatetime) || !this.isDateTime(rightdatetime)) 
         return null;
 
-    var result = leftdatetime.valueOf() - rightdatetime.valueOf();
+    let result = leftdatetime.valueOf() - rightdatetime.valueOf();
     if (result < 0) 
         return -1;
     else if (result > 0) 
@@ -202,7 +202,7 @@ module.exports.modifyDateTime = function(datetimeobj = null, y = 0, m = 0, d = 0
     if (!this.isDateTime(datetimeobj)) 
         datetimeobj = this.getNow();
 
-    var options = {};
+    let options = {};
 
     if (y == 0 && m == 0 && d == 0 && h == 0 && i == 0 && s == 0) 
         return datetimeobj;

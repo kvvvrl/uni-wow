@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 module.exports.authUser = function(token) {
     try{
         const decoded = jwt.verify(token.split(" ")[1], SECRET);
-        console.log(decoded);
         return true;
     }catch(err){
         return false;

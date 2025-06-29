@@ -11,9 +11,9 @@ class DozentDao {
     }
 
     loadById(id) {
-        var sql = 'SELECT * FROM Dozent WHERE id=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.get(id);
+        let sql = 'SELECT * FROM Dozent WHERE id=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Dozent) found by id=' + id);
