@@ -44,12 +44,16 @@ class ModulDao {
         return result;
     }
 
-    loadAll() {
+    loadAll(matNr) {
         const dozentDao = new DozentDao(this._conn);
         const bewertungDao = new BewertungDao(this._conn);
-        var sql = 'SELECT * FROM Modul';
+        var sql =    'SELECT Modul.*, Note FROM Modul ' +
+            'LEFT JOIN (' +
+            'SELECT * from UserToModul WHERE User_Matnr = ?)' +
+            'UserToModul ON Modul.id = UserToModul.Modul_id';
+
         var statement = this._conn.prepare(sql);
-        var result = statement.all();
+        var result = statement.all(matNr);
 
         if (helper.isArrayEmpty(result)) 
             return [];

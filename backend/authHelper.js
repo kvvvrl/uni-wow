@@ -14,6 +14,15 @@ module.exports.authUser = function(token) {
     }
 }
 
+module.exports.getUser = function(token) {
+    try{
+        const decoded = jwt.verify(token.split(" ")[1], SECRET);
+        return decoded.id;
+    }catch(err){
+        return null;
+    }
+}
+
 module.exports.getJWT = function(matnr, name){
     return jwt.sign(
         { id: matnr, username: name},
