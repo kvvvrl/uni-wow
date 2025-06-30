@@ -27,6 +27,7 @@ serviceRouter.get('/modul/gib/:id', function(request, response) {
     }
 });
 
+
 //loadAll get all Modul
 serviceRouter.get('/modul/alle', function(request, response) {
     console.log('Service modul: Client requested all records');

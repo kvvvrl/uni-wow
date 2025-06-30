@@ -35,7 +35,7 @@ class BewertungDao {
     loadByMatnr(id){
         let sql = 'SELECT Bewertung.Inhalt, Modul.Name, Modul.id,Bewertung.Score FROM Bewertung LEFT JOIN Modul ON Bewertung.Modul_id = Modul.id WHERE Bewertung.User_Matnr=?';
         let statement = this._conn.prepare(sql);
-        let result = statement.all(id);
+        let result = statement.get(id);
 
         if (helper.isUndefined(result))
             throw new Error('No Record (Bewertung) found by id=' + id);
