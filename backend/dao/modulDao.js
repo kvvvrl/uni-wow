@@ -24,8 +24,8 @@ class ModulDao {
             throw new Error('No Record (Modul) found by id=' + id);
 
         result.UserData = {
-            Note: this.loadGrade(id, matnr).Note,
-            Bewertung: bewertungDao.loadByMatnr(matnr)
+            Note: this.loadGrade(id, matnr),
+            Bewertung: bewertungDao.loadByMatnrAndModule(matnr, id)
         }
 
         result.Verantwortlicher = dozentDao.loadById(result.Verantwortlicher);
@@ -84,11 +84,11 @@ class ModulDao {
         let result = statement.get(parseInt(matnr), parseInt(modul_id));
 
         if (helper.isUndefined(result))
-            return null;
+            return null
 
         console.log(result)
 
-        return result
+        return result.Note
     }
 
     toString() {

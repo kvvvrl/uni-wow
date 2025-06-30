@@ -32,13 +32,24 @@ class BewertungDao {
         return result;
     }
 
+    loadByMatnrAndModule(matnr, modul_id){
+        let sql = 'SELECT Bewertung.Inhalt,Bewertung.Score FROM Bewertung WHERE Bewertung.User_Matnr=? AND Bewertung.Modul_id = ?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(matnr, modul_id);
+
+        if (helper.isUndefined(result))
+            return null;
+
+        return result;
+    }
+
     loadByMatnr(id){
         let sql = 'SELECT Bewertung.Inhalt, Modul.Name, Modul.id,Bewertung.Score FROM Bewertung LEFT JOIN Modul ON Bewertung.Modul_id = Modul.id WHERE Bewertung.User_Matnr=?';
         let statement = this._conn.prepare(sql);
         let result = statement.get(id);
 
         if (helper.isUndefined(result))
-            throw new Error('No Record (Bewertung) found by id=' + id);
+            return null;
 
         return result;
     }

@@ -67,13 +67,13 @@
 						<h3><label for="bewertung">Bewertung:</label></h3>
 						<textarea id="bewertung" rows="10" cols="30"></textarea>
 						<section class="star-rating">
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
 						</section>
-						<button type="submit" id="eingabe">Speichern</button>
+						<button type="submit" class="save" id="eingabe">Speichern</button>
 					</section>
 				</form>
 			</section>
@@ -194,7 +194,20 @@
 			modul.querySelector('.modul-inhalte').textContent = data.Inhalte;
 			modul.querySelector('.modul-pruefungsform').textContent = data.Pruefungsform;
 
-			modul.querySelector('.note').value = data.Note;
+			modul.querySelector('.note').value = data.UserData.Note;
+            
+            if(data.UserData.Bewertung) {
+                const stars = Array.from(modul.querySelectorAll('.star-user'));
+                stars.forEach((star, index) => {
+                    star.classList.toggle('checked', index < data.UserData.Bewertung.Score);
+                });
+
+                modul.getElementById('bewertung').value = data.UserData.Bewertung.Inhalt;
+                modul.querySelector('.save').innerText = 'Aktualisieren';
+			}
+
+
+            //TODO: Starrating
 
 			infos.appendChild(modul);
 		});
