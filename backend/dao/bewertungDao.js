@@ -65,17 +65,17 @@ class BewertungDao {
         return result.Score;
     }
 
-    insert(User_Matnr,Score,Inhalt,Modul_id) {
+    insert(User_Matnr, Score, Inhalt, Modul_id) {
         let sql = 'INSERT INTO Bewertung (User_Matnr, Score, Inhalt, Modul_id) VALUES (?, ?, ?, ?)';
         let statement = this._conn.prepare(sql);
         let params = [User_Matnr, Score, Inhalt, Modul_id];
+        console.log(params);
         let result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Insert failed for Bewertung with User_Matnr=' + User_Matnr + ', Modul_id=' + Modul_id);
 
-        return this.loadById(result.lastInsertRowid);
-
+        return true;
     }
  
     toString() {

@@ -44,7 +44,7 @@
 				<p class="modul-pruefungsform"></p>
 			</section>
 			<section class="modul-bewertung">
-				<form class="fields">
+				<form id="bewertungs-form" class="fields">
 					<section>
 						<h3><label for="note">Note:</label></h3>
 						<select class="note" name="note" id="note">
@@ -130,45 +130,6 @@
 				});
 			}
 		});
-
-		const form = document.querySelector('.modul-bewertung form');
-		if (form) {
-			form.addEventListener('submit', function (event) {
-				event.preventDefault();
-
-				const note = parseFloat(document.getElementById('note').value);
-				const bewertung = document.getElementById('bewertung').value;
-
-				if (bewertung.trim() === '') {
-					alert('Bitte geben Sie eine Bewertung ein.');
-					return;
-				}
-				if (selectedScore === 0) {
-					alert('Bitte vergeben Sie eine Sternebewertung.');
-					return;
-				}
-
-				const payload = {
-					User_Matnr: 123456, // Beispiel-Matrikelnummer, sollte dynamisch gesetzt werden
-					Modul_id: parseInt(id),
-					note: note,
-					Inhalt: bewertung,
-					Score: selectedScore
-				};
-
-				ajaxPost('http://localhost:8000/api/bewertung', payload, (err, response) => {
-					if (err) {
-						console.error(err);
-						alert('Fehler beim Speichern der Bewertung.');
-					} else {
-						alert('Bewertung erfolgreich gespeichert!');
-						form.reset();
-						selectedScore = 0;
-						document.querySelectorAll('.star-rating .star').forEach(s => s.classList.remove('checked'));
-					}
-				});
-			});
-		}
 	});
 
 	let selectedScore = 0; // global, damit überall verfügbar
@@ -206,10 +167,40 @@
                 modul.querySelector('.save').innerText = 'Aktualisieren';
 			}
 
-
-            //TODO: Starrating
-
 			infos.appendChild(modul);
+
+			document.getElementById("bewertungs-form").addEventListener("submit", (event) => {
+				event.preventDefault();
+
+				console.log("in submit");
+				const note = parseFloat(document.getElementById('note').value);
+				const bewertung = document.getElementById('bewertung').value;
+
+				if (bewertung.trim() === '') {
+					alert('Bitte geben Sie eine Bewertung ein.');
+					return;
+				}
+				if (selectedScore === 0) {
+					alert('Bitte vergeben Sie eine Sternebewertung.');
+					return;
+				}
+
+				const payload = {
+					Modul_id: parseInt(id),
+					Note: note,
+					Inhalt: bewertung,
+					Score: selectedScore
+				};
+
+				ajaxPost('http://localhost:8000/api/bewertung', payload, (err, response) => {
+					if (err) {
+						console.error(err);
+						alert('Fehler beim Speichern der Bewertung.');
+						return;
+					}
+				});
+				location.reload();
+			});
 		});
 	}
 

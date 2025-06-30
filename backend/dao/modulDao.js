@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const DozentDao = require('../dao/dozentDao.js');
+const UserDao = require('../dao/userDao.js');
 const BewertungDao = require('./bewertungDao.js');
 
 class ModulDao {
@@ -15,6 +16,7 @@ class ModulDao {
     loadById(id, matnr) {
         const dozentDao = new DozentDao(this._conn);
         const bewertungDao = new BewertungDao(this._conn);
+        const userDao = new UserDao(this._conn);
 
         let sql = 'SELECT * FROM Modul WHERE id=?';
         let statement = this._conn.prepare(sql);
@@ -24,7 +26,7 @@ class ModulDao {
             throw new Error('No Record (Modul) found by id=' + id);
 
         result.UserData = {
-            Note: this.loadGrade(id, matnr),
+            Note: userDao.loadGrade(id, matnr),
             Bewertung: bewertungDao.loadByMatnrAndModule(matnr, id)
         }
 
@@ -71,24 +73,6 @@ class ModulDao {
         });
 
         return result;
-    }
-
-    loadGrade(modul_id, matnr) {
-        console.log("GRADE")
-        let sql ='SELECT Note FROM UserToModul ' +
-                        'WHERE User_Matnr = ? ' +
-                        'AND Modul_id = ?';
-
-        let statement = this._conn.prepare(sql);
-
-        let result = statement.get(parseInt(matnr), parseInt(modul_id));
-
-        if (helper.isUndefined(result))
-            return null
-
-        console.log(result)
-
-        return result.Note
     }
 
     toString() {
