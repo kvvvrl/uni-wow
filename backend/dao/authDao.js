@@ -32,30 +32,6 @@ class UserDao {
         return result;
     }
 
-    loadProfile(matnr) {
-        let sql = 'SELECT UserToModul.Note, Modul.Name, Modul.Credits FROM UserToModul ' +
-            'LEFT JOIN Modul ON UserToModul.Modul_id = Modul.id ' +
-            'WHERE UserToModul.User_Matnr=?'
-
-        let statement = this._conn.prepare(sql);
-        let result = {}
-        result.grades = statement.all(matnr);
-
-        sql = 'SELECT AVG(UserToModul.Note) AS Durchschnitt, SUM(Modul.Credits) AS Creditsumme FROM UserToModul ' +
-            'LEFT JOIN Modul ON UserToModul.Modul_id = Modul.id ' +
-            'WHERE UserToModul.User_Matnr=?'
-
-        statement = this._conn.prepare(sql);
-        result.avg_sum = statement.get(matnr);
-        result.user = this.loadById(matnr);
-
-        //TODO Fehlerbehandlung evtl
-
-        console.log(result)
-
-        return result;
-    }
-
     exists(Matnr) {
         let sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
         let statement = this._conn.prepare(sql);
@@ -69,7 +45,6 @@ class UserDao {
 
 
     hasaccess(Matnr, Passwort) {
-        console.log('Service User: Client requested hasacces');
         let sql = 'SELECT Matnr FROM User WHERE Matnr=? AND Passwort=?';
         let statement = this._conn.prepare(sql);
         let params = [Matnr, Passwort];
@@ -81,12 +56,12 @@ class UserDao {
         return this.loadById(result.Matnr);
     }
 
-    create(Matnr = null, Vorname = '', Nachname = '', Passwort = '') {
+    create(Matnr = null, Vorname = '', Nachname = '', Passwort = '',Salt='') {
         //TODO:
         //hashpasswort and store in db
-        let sql = 'INSERT INTO User (Matnr,Vorname,Nachname,Passwort) VALUES (?,?,?,?)';
+        let sql = 'INSERT INTO User (Matnr,Vorname,Nachname,Passwort,Salt) VALUES (?,?,?,?,?)';
         let statement = this._conn.prepare(sql);
-        let params = [Matnr, Vorname, Nachname, Passwort];
+        let params = [Matnr, Vorname, Nachname, Passwort,Salt];
         let result = statement.run(params);
 
         if (result.changes != 1) 
@@ -128,37 +103,6 @@ class UserDao {
         } catch (ex) {
             throw new Error('Could not delete Record by Matnr=' + Matnr + '. Reason: ' + ex.message);
         }
-    }
-
-    loadGrade(modul_id, matnr) {
-        console.log("GRADE")
-        let sql ='SELECT Note FROM UserToModul ' +
-            'WHERE User_Matnr = ? ' +
-            'AND Modul_id = ?';
-
-        let statement = this._conn.prepare(sql);
-
-        let result = statement.get(parseInt(matnr), parseInt(modul_id));
-
-        if (helper.isUndefined(result))
-            return null
-
-        console.log(result)
-
-        return result.Note
-    }
-
-    saveGrade(modul_id, matnr, grade) {
-
-        let sql = 'INSERT INTO UserToModul (User_Matnr,Modul_id,Note) VALUES (?,?,?)';
-        let statement = this._conn.prepare(sql);
-        let params = [matnr, modul_id, grade];
-        let result = statement.run(params);
-
-        if (result.changes != 1)
-            throw new Error('Could not insert new Record. Data: ' + params);
-
-        return true;
     }
 
     toString() {

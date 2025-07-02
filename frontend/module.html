@@ -85,6 +85,17 @@
                     clone.querySelector('.modul-name').textContent = modul.Name;
                     clone.querySelector('.modul-beschreibung').textContent = modul.Inhalte;
                     clone.querySelector('.modul-link').href = `modul.html?id=${modul.id}`;
+
+                    if (parseFloat(modul.Note)){
+						if(modul.Note <= 4){
+                            clone.querySelector('.modul').classList.add('modul-bestanden');
+						} else {
+                            clone.querySelector('.modul').classList.add('modul-durchfall');
+                        }
+                        clone.querySelector('.modul').classList.remove('modul');
+					} else {
+                        //in diesem fall bleibt das default styling was eh schon durch gegebene Klasse da ist
+					}
 					
 					// Score-basiert Sterne setzen
 					const score = parseFloat(modul.Score);
@@ -97,7 +108,7 @@
         })
     }
 	function getNavbar(){
-        fetch('/navbar.html')
+        fetch('./navbar.html')
             .then(res => res.text())
             .then(html => document.getElementById('nav').innerHTML = html);
     }

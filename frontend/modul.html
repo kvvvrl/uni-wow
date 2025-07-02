@@ -44,36 +44,36 @@
 				<p class="modul-pruefungsform"></p>
 			</section>
 			<section class="modul-bewertung">
-				<form class="fields">
+				<form id="bewertungs-form" class="fields">
 					<section>
 						<h3><label for="note">Note:</label></h3>
-						<select name="note" id="note">
-							<option value="1.0">1</option>
+						<select class="note" name="note" id="note">
+							<option value="1">1</option>
 							<option value="1.3">1.3</option>
 							<option value="1.7">1.7</option>
-							<option value="2.0">2</option>
+							<option value="2">2</option>
 							<option value="2.3">2.3</option>
 							<option value="2.7">2.7</option>
-							<option value="3.0">3</option>
+							<option value="3">3</option>
 							<option value="3.3">3.3</option>
 							<option value="3.7">3.7</option>
-							<option value="4.0">4</option>
+							<option value="4">4</option>
 							<option value="4.3">4.3</option>
 							<option value="4.7">4.7</option>
-							<option value="5.0">5</option>
+							<option value="5">5</option>
 						</select>
 					</section>
 					<section class="bewertung">
 						<h3><label for="bewertung">Bewertung:</label></h3>
 						<textarea id="bewertung" rows="10" cols="30"></textarea>
 						<section class="star-rating">
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
-							<span class="fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
+							<span class="star-user fa fa-star star"></span>
 						</section>
-						<button type="submit" id="eingabe">Speichern</button>
+						<button type="submit" class="save" id="eingabe">Speichern</button>
 					</section>
 				</form>
 			</section>
@@ -108,6 +108,30 @@
 </footer>
 </html>
 <script>
+	document.addEventListener('DOMContentLoaded', () => {
+		getNavbar();
+
+		const params = new URLSearchParams(window.location.search);
+		const id = params.get('id');
+		getModulData(id);
+		getKommentarData(id);
+
+		// Sternebewertung: globales Click-Handling
+		document.addEventListener('click', function (e) {
+			if (
+					e.target.classList.contains('star') &&
+					e.target.closest('.star-rating')
+			) {
+				const starsrate = Array.from(document.querySelectorAll('.star-rating .fa-star'));
+				selectedScore = starsrate.indexOf(e.target) + 1;
+
+				starsrate.forEach((star, index) => {
+					star.classList.toggle('checked', index < selectedScore);
+				});
+			}
+		});
+	});
+
 	let selectedScore = 0; // global, damit überall verfügbar
 
 	function getModulData(id) {
@@ -131,47 +155,51 @@
 			modul.querySelector('.modul-inhalte').textContent = data.Inhalte;
 			modul.querySelector('.modul-pruefungsform').textContent = data.Pruefungsform;
 
+			modul.querySelector('.note').value = data.UserData.Note;
+            
+            if(data.UserData.Bewertung) {
+                const stars = Array.from(modul.querySelectorAll('.star-user'));
+                stars.forEach((star, index) => {
+                    star.classList.toggle('checked', index < data.UserData.Bewertung.Score);
+                });
+
+                modul.getElementById('bewertung').value = data.UserData.Bewertung.Inhalt;
+                modul.querySelector('.save').innerText = 'Aktualisieren';
+			}
+
 			infos.appendChild(modul);
 
-			// Eventlistener für das Formular nach DOM-Einfügung setzen
-			const form = document.querySelector('.modul-bewertung form');
-			if (form) {
-				form.addEventListener('submit', function (event) {
-					event.preventDefault();
+			document.getElementById("bewertungs-form").addEventListener("submit", (event) => {
+				event.preventDefault();
 
-					const note = parseFloat(document.getElementById('note').value);
-					const bewertung = document.getElementById('bewertung').value;
+				const note = parseFloat(document.getElementById('note').value);
+				const bewertung = document.getElementById('bewertung').value;
 
-					if (bewertung.trim() === '') {
-						alert('Bitte geben Sie eine Bewertung ein.');
+				if (bewertung.trim() === '') {
+					alert('Bitte geben Sie eine Bewertung ein.');
+					return;
+				}
+				if (selectedScore === 0) {
+					alert('Bitte vergeben Sie eine Sternebewertung.');
+					return;
+				}
+
+				const payload = {
+					Modul_id: parseInt(id),
+					Note: note,
+					Inhalt: bewertung,
+					Score: selectedScore
+				};
+
+				ajaxPost('http://localhost:8000/api/bewertung', payload, (err, response) => {
+					if (err) {
+						console.error(err);
+						alert('Fehler beim Speichern der Bewertung.');
 						return;
 					}
-					if (selectedScore === 0) {
-						alert('Bitte vergeben Sie eine Sternebewertung.');
-						return;
-					}
-
-					const payload = {
-						User_Matnr: 123456, // Beispiel-Matrikelnummer, sollte dynamisch gesetzt werden
-						Modul_id: parseInt(id),
-						note: note,
-						Inhalt: bewertung,
-						Score: selectedScore
-					};
-
-					ajaxPost('http://localhost:8000/api/bewertung', payload, (err, response) => {
-						if (err) {
-							console.error(err);
-							alert('Fehler beim Speichern der Bewertung.');
-						} else {
-							alert('Bewertung erfolgreich gespeichert!');
-							form.reset();
-							selectedScore = 0;
-							document.querySelectorAll('.star-rating .star').forEach(s => s.classList.remove('checked'));
-						}
-					});
 				});
-			}
+				location.reload();
+			});
 		});
 	}
 
@@ -208,33 +236,10 @@
 
 
 	function getNavbar() {
-		fetch('/navbar.html')
+		fetch('./navbar.html')
 			.then(res => res.text())
 			.then(html => document.getElementById('nav').innerHTML = html);
 	}
 
-	document.addEventListener('DOMContentLoaded', () => {
-		getNavbar();
 
-		const params = new URLSearchParams(window.location.search);
-		const id = params.get('id');
-		getModulData(id);
-		getKommentarData(id);
-
-		// Sternebewertung: globales Click-Handling
-		document.addEventListener('click', function (e) {
-			if (
-				e.target.classList.contains('star') &&
-				e.target.closest('.star-rating')
-			) {
-				const starsrate = Array.from(document.querySelectorAll('.star-rating .fa-star'));
-				selectedScore = starsrate.indexOf(e.target) + 1;
-
-				starsrate.forEach((star, index) => {
-					star.classList.toggle('checked', index < selectedScore);
-				});
-			}
-		});
-
-	});
 </script>

@@ -18,15 +18,15 @@ SET Inhalt = ?, Score = ?
 WHERE Bewertung.User_Matnr = ? AND Bewertung.Modul_id = ?;
 
 -- Einen User registrieren
-INSERT INTO User(Matnr, Vorname, Nachname, PasswdHash, Salt)
+INSERT INTO User(Matnr, Vorname, Nachname, Passwort, Salt)
 VALUES (?, ?, ?, ?, ?);
 
 -- Passwort Hash überprüfen für Login
-SELECT User.PasswdHash FROM User
+SELECT User.Passwort FROM User
 WHERE User.Matnr = ?;
 
 -- Passwort Ändern
 UPDATE User
-SET PasswdHash = ?
+SET Passwort = ?
 WHERE Matnr = ?;
 
