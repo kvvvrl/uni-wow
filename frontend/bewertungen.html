@@ -32,10 +32,9 @@
 			<section class="kommentar">
 				<section class="benutzer-info">
 					<strong class="modul"></strong>
-					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 				</section>
 				<section class="inhalt">
-					<section class="bewertungstext"><textarea class="bewertungstext-input" rows="1" disabled></textarea></section>
+					<section class="bewertungstext"></section>
 					<section class="bewertungsvalue">
 						<span class="fa fa-star-o"></span>
 						<span class="fa fa-star-o"></span>
@@ -80,7 +79,7 @@
 					const kommentar = fragment.querySelector('.kommentar'); // echtes DOM-Element im Fragment
 
 					kommentar.querySelector('.modul').textContent = komment.Name;
-					//kommentar.querySelector('.bewertungstext').textContent = komment.Inhalt;
+					kommentar.querySelector('.bewertungstext').textContent = komment.Inhalt;
 					kommentar.querySelector('.modul-link').href = `modul.html?id=${komment.id}`;
 
 					// Score-basiert Sterne setzen
@@ -94,27 +93,28 @@
 
 					// Fragment anhängen
 					kommentare.appendChild(fragment);
+                    /*
+										// Event Listener für den Edit-Button
+										const editBtn = kommentar.querySelector('.fa-pencil-square-o');
+										const bewertungTextSection = kommentar.querySelector('.bewertungstext');
+										const bewertungInput = bewertungTextSection.querySelector('.bewertungstext-input');
 
-					// Event Listener für den Edit-Button
-					const editBtn = kommentar.querySelector('.fa-pencil-square-o');
-					const bewertungTextSection = kommentar.querySelector('.bewertungstext');
-					const bewertungInput = bewertungTextSection.querySelector('.bewertungstext-input');
+										bewertungInput.value = komment.Inhalt;
 
-					bewertungInput.value = komment.Inhalt;
 
-					editBtn.addEventListener('click', function(){
-						bewertungInput.disabled = false;
-						bewertungInput.focus();
-						bewertungInput.style.height = "auto";
-						bewertungInput.style.height = bewertungInput.scrollHeight + "px";
-						bewertungInput.addEventListener('input', function() {
-							this.style.height = "auto";
-							this.style.height = this.scrollHeight + "px";
-						});
-						bewertungInput.addEventListener('blur', function () {
-							bewertungInput.disabled = true;
-						});
-					});
+										editBtn.addEventListener('click', function(){
+											bewertungInput.disabled = false;
+											bewertungInput.focus();
+											bewertungInput.style.height = "auto";
+											bewertungInput.style.height = bewertungInput.scrollHeight + "px";
+											bewertungInput.addEventListener('input', function() {
+												this.style.height = "auto";
+												this.style.height = this.scrollHeight + "px";
+											});
+											bewertungInput.addEventListener('blur', function () {
+												bewertungInput.disabled = true;
+											});
+										});*/
 				}
 
             }

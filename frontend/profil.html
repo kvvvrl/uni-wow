@@ -57,73 +57,30 @@
 		</form>
 			<section class="profil-lower">
 				<section class="noten-liste">
-					<table>
+					<table id="noten-tabelle">
 						<tr>
 							<th>Modul</th>
 							<th>ECTS</th>
 							<th>Note</th>
 						</tr>
-						<tr>
-							<td>Mathematik 2</td>
-							<td>5</td>
-							<td>1.0</td>
-						</tr>
-						<tr>
-							<td>Angewandte Mathematik</td>
-							<td>5</td>
-							<td>5.0</td>
-						</tr>
-						<tr>
-							<td>Formale Grundlagen</td>
-							<td>5</td>
-							<td>1.7</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
-						<tr>
-							<td>Dummy</td>
-							<td>0</td>
-							<td>0.0</td>
-						</tr>
+						<template id="noten-zeile">
+							<tr>
+								<td class="modul-name"></td>
+								<td class="modul-ects"></td>
+								<td class="modul-note"></td>
+							</tr>
+						</template>
 					</table>
 				</section>
 				<section class="profil-infos">
 					<table>
 						<tr>
 							<td><h2>Notendurchschnitt:</h2></td>
-							<td><h2 class="wert">2.5</h2></td>
+							<td><h2 id="durchschnitt" class="wert">2.5</h2></td>
 						</tr>
 						<tr>
 							<td><h2>Gesammelte ECTS:</h2></td>
-							<td><h2 class="wert">15</h2></td>
+							<td><h2 id="credits" class="wert">15</h2></td>
 						</tr>
 					</table>
 				</section>
@@ -148,7 +105,7 @@
 	};
 
 	function getUser(){
-		ajaxGet(`http://localhost:8000/api/user/gib`, (err, data) => {
+		ajaxGet(`http://localhost:8000/api/user/profil`, (err, data) => {
 			if (err) {
 				console.log(err);
 				return;
@@ -161,11 +118,29 @@
 			const profil_upper_template = document.getElementById('profil-upper-template');
 			const profil_upper = profil_upper_template.content.cloneNode(true);
 
-			profil_upper.querySelector('.vname').value = data.Vorname;
-			profil_upper.querySelector('.fname').value = data.Nachname;
-			profil_upper.querySelector('.mnummer').value = data.Matnr;
+			profil_upper.querySelector('.vname').value = data.user.Vorname;
+			profil_upper.querySelector('.fname').value = data.user.Nachname;
+			profil_upper.querySelector('.mnummer').value = data.user.Matnr;
 
 			form.appendChild(profil_upper);
+
+            const table = document.getElementById('noten-tabelle');
+            const noten_zeile = document.getElementById('noten-zeile');
+
+            for (let i = 0; i < data.grades.length; i++) {
+
+                const zeile = noten_zeile.content.cloneNode(true);
+                let grade = data.grades[i];
+
+                zeile.querySelector('.modul-name').textContent = grade.Name
+                zeile.querySelector('.modul-note').textContent = grade.Note
+                zeile.querySelector('.modul-ects').textContent = grade.Credits
+
+				table.appendChild(zeile);
+            }
+
+            document.getElementById('durchschnitt').textContent = data.avg_sum.Durchschnitt;
+            document.getElementById('credits').textContent = data.avg_sum.Creditsumme;
 		});
 	}
 

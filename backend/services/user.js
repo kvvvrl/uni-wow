@@ -31,6 +31,27 @@ serviceRouter.get('/user/gib', function(request, response) {
     }
 });
 
+serviceRouter.get('/user/profil', function(request, response) {
+    console.log('Service user: Client requested user profile');
+
+    const userDao = new UserDao(request.app.locals.dbConnection);
+    const token = request.header('authorization')
+
+    if(authHelper.authUser(token)) {
+        try {
+            const matnr = authHelper.getUser(token);
+            let obj = userDao.loadProfile(matnr);
+            console.log('Service user: Record loaded');
+            response.status(200).json(obj);
+        } catch (ex) {
+            console.error('Service user: Error loading profile. Exception occured: ' + ex.message);
+            response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+        }
+    } else {
+        response.status(401).json({'fehler': true, 'nachricht': 'Nicht Authentifiziert'});
+    }
+});
+
 serviceRouter.get('/user/alle', function(request, response) {
     console.log('Service User: Client requested all records');
 

@@ -32,6 +32,30 @@ class UserDao {
         return result;
     }
 
+    loadProfile(matnr) {
+        let sql = 'SELECT UserToModul.Note, Modul.Name, Modul.Credits FROM UserToModul ' +
+            'LEFT JOIN Modul ON UserToModul.Modul_id = Modul.id ' +
+            'WHERE UserToModul.User_Matnr=?'
+
+        let statement = this._conn.prepare(sql);
+        let result = {}
+        result.grades = statement.all(matnr);
+
+        sql = 'SELECT AVG(UserToModul.Note) AS Durchschnitt, SUM(Modul.Credits) AS Creditsumme FROM UserToModul ' +
+            'LEFT JOIN Modul ON UserToModul.Modul_id = Modul.id ' +
+            'WHERE UserToModul.User_Matnr=?'
+
+        statement = this._conn.prepare(sql);
+        result.avg_sum = statement.get(matnr);
+        result.user = this.loadById(matnr);
+
+        //TODO Fehlerbehandlung evtl
+
+        console.log(result)
+
+        return result;
+    }
+
     exists(Matnr) {
         let sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
         let statement = this._conn.prepare(sql);

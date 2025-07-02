@@ -1,4 +1,5 @@
 const helper = require('../helper.js');
+const {toJSON} = require("lodash/seq");
 
 class BewertungDao {
 
@@ -46,10 +47,12 @@ class BewertungDao {
     loadByMatnr(id){
         let sql = 'SELECT Bewertung.Inhalt, Modul.Name, Modul.id,Bewertung.Score FROM Bewertung LEFT JOIN Modul ON Bewertung.Modul_id = Modul.id WHERE Bewertung.User_Matnr=?';
         let statement = this._conn.prepare(sql);
-        let result = statement.get(id);
+        let result = statement.all(id);
 
         if (helper.isUndefined(result))
             return null;
+
+        console.log(result)
 
         return result;
     }
@@ -76,6 +79,27 @@ class BewertungDao {
             throw new Error('Insert failed for Bewertung with User_Matnr=' + User_Matnr + ', Modul_id=' + Modul_id);
 
         return true;
+    }
+
+    update(User_Matnr, Score, Inhalt, Modul_id) {
+        let sql = 'UPDATE Bewertung SET Score=?, Inhalt=? WHERE User_Matnr=? AND Modul_id=?';
+        let statement = this._conn.prepare(sql);
+        let params = [Score, Inhalt, User_Matnr, Modul_id];
+        let result = statement.run(params);
+
+        if (result.changes != 1)
+            throw new Error('Insert failed for Bewertung with User_Matnr=' + User_Matnr + ', Modul_id=' + Modul_id);
+
+        return true;
+    }
+
+    exists(matnr, modul_id) {
+        console.log('existance check')
+        let sql = 'SELECT COUNT(1) FROM Bewertung WHERE User_Matnr=? AND Modul_id=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(matnr, modul_id);
+
+        return !helper.isUndefined(result);
     }
  
     toString() {

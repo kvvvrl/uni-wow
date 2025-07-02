@@ -90,10 +90,15 @@ serviceRouter.post('/bewertung', function(request, response) {
         const userDao = new UserDao(request.app.locals.dbConnection);
 
         try {
-            let obj = bewertungDao.insert(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
-            console.log('Service bewertung: Record inserted');
-            let obj2 = userDao.saveGrade(request.body.Modul_id, matnr, request.body.Note);
 
+            if(bewertungDao.exists(matnr, request.body.Modul_id)){
+                let obj = bewertungDao.update(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
+                console.log('Service bewertung: Record updated');
+            } else {
+                let obj = bewertungDao.insert(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
+                console.log('Service bewertung: Record inserted');
+                let obj2 = userDao.saveGrade(request.body.Modul_id, matnr, request.body.Note);
+            }
             response.status(200);
         } catch (ex) {
             console.error('Service bewertung: Error creating new record. Exception occured: ' + ex.message);
