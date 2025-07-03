@@ -160,6 +160,17 @@ class UserDao {
 
         return true;
     }
+    updateGrade(modul_id, matnr, grade) {
+        let sql = 'UPDATE UserToModul SET Note=? WHERE User_Matnr=? AND Modul_id=?';
+        let statement = this._conn.prepare(sql);
+        let params = [grade, matnr, modul_id];
+        let result = statement.run(params);
+
+        if (result.changes != 1)
+            throw new Error('Update failed for Grade with User_Matnr=' + matnr + ', Modul_id=' + modul_id);
+
+        return true;
+    }
 
     toString() {
         console.log('UserDao [_conn=' + this._conn + ']');

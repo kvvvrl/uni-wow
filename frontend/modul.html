@@ -109,8 +109,6 @@
 </html>
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		getNavbar();
-
 		const params = new URLSearchParams(window.location.search);
 		const id = params.get('id');
 		getModulData(id);
@@ -165,6 +163,7 @@
 
                 modul.getElementById('bewertung').value = data.UserData.Bewertung.Inhalt;
                 modul.querySelector('.save').innerText = 'Aktualisieren';
+				selectedScore = data.UserData.Bewertung.Score
 			}
 
 			infos.appendChild(modul);
@@ -233,13 +232,4 @@
 			}
 		});
 	}
-
-
-	function getNavbar() {
-		fetch('./navbar.html')
-			.then(res => res.text())
-			.then(html => document.getElementById('nav').innerHTML = html);
-	}
-
-
 </script>

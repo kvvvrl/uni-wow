@@ -60,6 +60,17 @@ serviceRouter.get('/bewertungen/user/gib', function (request, response){
     }
 })
 
+serviceRouter.get('/bewertungen/alle', function (request, response) {
+    const bewertungDao = new BewertungDao(request.app.locals.dbConnection);
+    try {
+        let obj = bewertungDao.loadAll(); 
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service bewertung: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.post('/bewertung', function(request, response) {
     console.log('Service bewertung: Client requested creation of new record');
 
@@ -92,8 +103,10 @@ serviceRouter.post('/bewertung', function(request, response) {
         try {
 
             if(bewertungDao.exists(matnr, request.body.Modul_id)){
+                console.log("UPDATE")
                 let obj = bewertungDao.update(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
-                console.log('Service bewertung: Record updated');
+                let obj2 = userDao.updateGrade(request.body.Modul_id, matnr, request.body.Note);
+                console.log('Service bewertung and grade: Records updated');
             } else {
                 let obj = bewertungDao.insert(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
                 console.log('Service bewertung: Record inserted');

@@ -67,6 +67,20 @@ class BewertungDao {
         
         return result.Score;
     }
+    #loadall
+    loadAll() {
+        let sql = `
+            SELECT Bewertung.Inhalt, Bewertung.Score, Bewertung.Modul_id, Bewertung.User_Matnr,
+                   User.Vorname
+            FROM Bewertung
+            LEFT JOIN User ON Bewertung.User_Matnr = User.Matnr
+        `;
+        let statement = this._conn.prepare(sql);
+        let result = statement.all();
+        if (helper.isUndefined(result))
+            return [];
+        return result;
+    }
 
     insert(User_Matnr, Score, Inhalt, Modul_id) {
         let sql = 'INSERT INTO Bewertung (User_Matnr, Score, Inhalt, Modul_id) VALUES (?, ?, ?, ?)';
@@ -95,11 +109,10 @@ class BewertungDao {
 
     exists(matnr, modul_id) {
         console.log('existance check')
-        let sql = 'SELECT COUNT(1) FROM Bewertung WHERE User_Matnr=? AND Modul_id=?';
+        let sql = 'SELECT COUNT(1) as val FROM Bewertung WHERE User_Matnr=? AND Modul_id=?';
         let statement = this._conn.prepare(sql);
         let result = statement.get(matnr, modul_id);
-
-        return !helper.isUndefined(result);
+        return result.val != 0;
     }
  
     toString() {

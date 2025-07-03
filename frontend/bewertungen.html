@@ -58,7 +58,6 @@
 </html>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        getNavbar()
         getData()
     });
     function getData(id) {
@@ -119,11 +118,5 @@
 
             }
         })
-    }
-
-    function getNavbar(){
-        fetch('./navbar.html')
-            .then(res => res.text())
-            .then(html => document.getElementById('nav').innerHTML = html);
     }
 </script>
