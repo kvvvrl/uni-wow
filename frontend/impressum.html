@@ -47,14 +47,3 @@
 </footer>
 </body>
 </html>
-<script>
-	document.addEventListener("DOMContentLoaded", function(){
-        getNavbar()
-    })
-
-    function getNavbar(){
-        fetch('./navbar.html')
-            .then(res => res.text())
-            .then(html => document.getElementById('nav').innerHTML = html);
-    }
-</script>

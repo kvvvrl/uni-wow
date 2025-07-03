@@ -60,6 +60,17 @@ serviceRouter.get('/bewertungen/user/gib', function (request, response){
     }
 })
 
+serviceRouter.get('/bewertungen/alle', function (request, response) {
+    const bewertungDao = new BewertungDao(request.app.locals.dbConnection);
+    try {
+        let obj = bewertungDao.loadAll(); 
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service bewertung: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.post('/bewertung', function(request, response) {
     console.log('Service bewertung: Client requested creation of new record');
 

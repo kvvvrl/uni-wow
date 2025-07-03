@@ -19,6 +19,7 @@
 	<!-- JS-Files -->
 	<script src="script/navbar.js"></script>
 	<script src="script/ajax.js"></script>
+	<script src="script/profil.js"></script>
 </head>
 
 <body>
@@ -33,6 +34,7 @@
 						<section class="overlay" onclick="alert('Dummy Bild-Upload')">
 							<i class="fa fa-upload icon" aria-hidden="true"></i>
 						</section>
+						<a href="#" id="logout-link" class="logout-link">Logout</a>
 					</section>
 					<section class="container">
 						<section class="field">
@@ -94,59 +96,3 @@
 </body>
 
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-        getNavbar();
-		getUser();
-    })
-
-	window.onload = function (){
-
-	};
-
-	function getUser(){
-		ajaxGet(`http://localhost:8000/api/user/profil`, (err, data) => {
-			if (err) {
-				console.log(err);
-				return;
-			}
-
-			data = JSON.parse(data);
-			console.log(data);
-
-			const form = document.getElementById('upper-form');
-			const profil_upper_template = document.getElementById('profil-upper-template');
-			const profil_upper = profil_upper_template.content.cloneNode(true);
-
-			profil_upper.querySelector('.vname').value = data.user.Vorname;
-			profil_upper.querySelector('.fname').value = data.user.Nachname;
-			profil_upper.querySelector('.mnummer').value = data.user.Matnr;
-
-			form.appendChild(profil_upper);
-
-            const table = document.getElementById('noten-tabelle');
-            const noten_zeile = document.getElementById('noten-zeile');
-
-            for (let i = 0; i < data.grades.length; i++) {
-
-                const zeile = noten_zeile.content.cloneNode(true);
-                let grade = data.grades[i];
-
-                zeile.querySelector('.modul-name').textContent = grade.Name
-                zeile.querySelector('.modul-note').textContent = grade.Note
-                zeile.querySelector('.modul-ects').textContent = grade.Credits
-
-				table.appendChild(zeile);
-            }
-
-            document.getElementById('durchschnitt').textContent = data.avg_sum.Durchschnitt;
-            document.getElementById('credits').textContent = data.avg_sum.Creditsumme;
-		});
-	}
-
-    function getNavbar(){
-        fetch('./navbar.html')
-            .then(res => res.text())
-            .then(html => document.getElementById('nav').innerHTML = html);
-    }
-</script>

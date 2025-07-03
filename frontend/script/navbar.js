@@ -1,3 +1,12 @@
+document.addEventListener("DOMContentLoaded", function () {
+        getNavbar()
+    })
+
+    function getNavbar() {
+        fetch('./navbar.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('nav').innerHTML = html);
+    }
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", function () {
         const navbar = document.querySelector("nav"); // select nav element

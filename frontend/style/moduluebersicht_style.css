@@ -1,7 +1,7 @@
 .modul-bestanden {
     background-color: lightgrey;
     height: 20vh;
-    border: 2px solid grey;
+    border: 2px solid #27ae60;
     border-radius: 5px;
     padding: 1vh;
     margin: 1vh;
@@ -21,7 +21,7 @@
 .modul-durchfall {
     background: lightgrey;
     height: 20vh;
-    border: 2px solid grey;
+    border: 2px solid #c0392b;
     border-radius: 5px;
     padding: 1vh;
     margin: 1vh;
