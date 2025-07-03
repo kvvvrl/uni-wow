@@ -1,54 +1,21 @@
 const helper = require('../helper.js');
 const UserDao = require('../dao/userDao.js');
 const express = require('express');
-const authHelper = require('../authHelper.js');
-let serviceRouter = express.Router();
+var serviceRouter = express.Router();
 
 console.log('- Service user');
 
-serviceRouter.get('/user/gib', function(request, response) {
+serviceRouter.get('/user/gib/:id', function(request, response) {
     console.log('Service user: Client requested one record, id=' + request.params.id);
 
     const userDao = new UserDao(request.app.locals.dbConnection);
-    const token = request.header('authorization')
-
-    if(authHelper.authUser(token)) {
-        try {
-            const matnr = authHelper.getUser(token);
-            if (matnr) {
-                let obj = userDao.loadById(matnr);
-                console.log('Service user: Record loaded');
-                response.status(200).json(obj);
-            } else {
-                throw new Error('User not found!');
-            }
-        } catch (ex) {
-            console.error('Service user: Error loading record by id. Exception occured: ' + ex.message);
-            response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
-        }
-    } else {
-        response.status(401).json({'fehler': true, 'nachricht': 'Nicht Authentifiziert'});
-    }
-});
-
-serviceRouter.get('/user/profil', function(request, response) {
-    console.log('Service user: Client requested user profile');
-
-    const userDao = new UserDao(request.app.locals.dbConnection);
-    const token = request.header('authorization')
-
-    if(authHelper.authUser(token)) {
-        try {
-            const matnr = authHelper.getUser(token);
-            let obj = userDao.loadProfile(matnr);
-            console.log('Service user: Record loaded');
-            response.status(200).json(obj);
-        } catch (ex) {
-            console.error('Service user: Error loading profile. Exception occured: ' + ex.message);
-            response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
-        }
-    } else {
-        response.status(401).json({'fehler': true, 'nachricht': 'Nicht Authentifiziert'});
+    try {
+        var obj = userDao.loadById(request.params.id);
+        console.log('Service user: Record loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service user: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
     }
 });
 
@@ -57,7 +24,7 @@ serviceRouter.get('/user/alle', function(request, response) {
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        let arr = userDao.loadAll();
+        var arr = userDao.loadAll();
         console.log('Service User: Records loaded, count=' + arr.length);
         response.status(200).json(arr);
     } catch (ex) {
@@ -71,7 +38,7 @@ serviceRouter.get('/user/existiert/:id', function(request, response) {
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        let exists = userDao.exists(request.params.id);
+        var exists = userDao.exists(request.params.id);
         console.log('Service User: Check if record exists by id=' + request.params.id + ', exists=' + exists);
         response.status(200).json({ 'id': request.params.id, 'existiert': exists });
     } catch (ex) {
@@ -84,7 +51,7 @@ serviceRouter.get('/user/existiert/:id', function(request, response) {
 serviceRouter.get('/user/check/:matnr/:passwort', function(request, response) {
     console.log('Service User: Client requested check, if user has access for/with', request.params.matnr, request.params.passwort);
 
-    let errorMsgs=[];
+    var errorMsgs=[];
     if (helper.isUndefined(request.params.matnr)) 
         errorMsgs.push('matnr fehlt');
     if (helper.isUndefined(request.params.passwort)) 
@@ -98,7 +65,7 @@ serviceRouter.get('/user/check/:matnr/:passwort', function(request, response) {
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        let hasaccess = userDao.hasaccess(request.params.matnr, request.params.passwort);
+        var hasaccess = userDao.hasaccess(request.params.matnr, request.params.passwort);
         console.log('Service User: Check if user has access, hasaccess=' + hasaccess);
         response.status(200).json(hasaccess);
     } catch (ex) {
@@ -110,7 +77,7 @@ serviceRouter.get('/user/check/:matnr/:passwort', function(request, response) {
 serviceRouter.post('/user', function(request, response) {
     console.log('Service User: Client requested creation of new record');
 
-    let errorMsgs=[];
+    var errorMsgs=[];
     if (helper.isUndefined(request.body.Matnr))
         errorMsgs.push('Matnr fehlt');
     if (helper.isUndefined(request.body.Vorname))
@@ -129,7 +96,7 @@ serviceRouter.post('/user', function(request, response) {
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        let obj = userDao.create(request.body.Matnr, request.body.Vorname, request.body.Nachname, request.body.Passwort);
+        var obj = userDao.create(request.body.Matnr, request.body.Vorname, request.body.Nachname, request.body.Passwort);
         console.log('Service User: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {
@@ -150,7 +117,7 @@ serviceRouter.post('/user', function(request, response) {
 serviceRouter.put('/user', function(request, response) {
     console.log('Service User: Client requested update of existing record');
 
-    let errorMsgs=[];
+    var errorMsgs=[];
     if (helper.isUndefined(request.body.Matnr)) 
         errorMsgs.push('Matnr fehlt');
     if (helper.isUndefined(request.body.Vorname))
@@ -168,7 +135,7 @@ serviceRouter.put('/user', function(request, response) {
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        let obj = userDao.update(request.body.Matnr, request.body.Vorname, request.body.Nachname, request.body.neuespasswort);
+        var obj = userDao.update(request.body.Matnr, request.body.Vorname, request.body.Nachname, request.body.neuespasswort);
         console.log('Service User: Record updated, id=' + request.body.Matnr);
         response.status(200).json(obj);
     } catch (ex) {
@@ -182,7 +149,7 @@ serviceRouter.delete('/user/:id', function(request, response) {
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        let obj = userDao.loadById(request.params.id);
+        var obj = userDao.loadById(request.params.id);
         userDao.delete(request.params.id);
         console.log('Service User: Deletion of record successfull, id=' + request.params.id);
         response.status(200).json({ 'gelöscht': true, 'eintrag': obj });

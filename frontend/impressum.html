@@ -16,7 +16,22 @@
 	<script src="script/navbar.js"></script>
 </head>
 <body>
-<header id="nav"></header>
+<header>
+	<nav>
+		<ul>
+			<li class="navblock1">
+				<a href="index.html">
+					<img src="pictures/Icon_White.svg" alt="icon"/>
+				</a>
+			</li>
+			<li class="navblock2"><a href="moduluebersicht.html">Module</a></li>
+			<li class="navblock3">
+				<a href="bewertungsuebersicht.html">Meine Bewertungen</a>
+			</li>
+			<li class="navblock4"><a href="profil.html">Profil</a></li>
+		</ul>
+	</nav>
+</header>
 <main>
 	<h1 class="ueberschrift">Impressum</h1>
 	<p><strong>Angaben gem&auml;ß § 5 DDG</strong></p>
@@ -47,14 +62,3 @@
 </footer>
 </body>
 </html>
-<script>
-	document.addEventListener("DOMContentLoaded", function(){
-        getNavbar()
-    })
-
-    function getNavbar(){
-        fetch('./navbar.html')
-            .then(res => res.text())
-            .then(html => document.getElementById('nav').innerHTML = html);
-    }
-</script>

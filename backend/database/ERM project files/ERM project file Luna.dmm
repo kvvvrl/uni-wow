@@ -281,7 +281,25 @@
 				},
 				{
 					"id": "320b5683-e2c7-40d1-954f-51c269529bdd",
-					"name": "Passwort",
+					"name": "PasswdHash",
+					"datatype": "TEXT",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"fk": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"collation": "",
+					"sqlite": {
+						"autoincrement": false
+					},
+					"estimatedSize": ""
+				},
+				{
+					"id": "429fdcdb-66a5-408a-9aa9-6d2692572f2b",
+					"name": "Salt",
 					"datatype": "TEXT",
 					"param": "",
 					"pk": false,

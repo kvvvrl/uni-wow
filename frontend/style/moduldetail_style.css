@@ -111,6 +111,13 @@ button:hover {
     margin-top: 3vh;
 }
 
+.fa-star {
+    color: grey;
+}
+
+.checked {
+    color: orange;
+}
 
 .profilepicture {
     width: 30px;

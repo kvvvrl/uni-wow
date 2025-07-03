@@ -1,7 +1,7 @@
 const helper = require('../helper.js');
 const DozentDao = require('../dao/dozentDao.js');
 const express = require('express');
-let serviceRouter = express.Router();
+var serviceRouter = express.Router();
 
 console.log('- Service dozent');
 
@@ -10,7 +10,7 @@ serviceRouter.get('/dozent/gib/:id', function(request, response) {
 
     const dozentDao = new DozentDao(request.app.locals.dbConnection);
     try {
-        let obj = dozentDao.loadById(request.params.id);
+        var obj = dozentDao.loadById(request.params.id);
         console.log('Service dozent: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {

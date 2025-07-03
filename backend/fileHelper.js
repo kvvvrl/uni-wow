@@ -21,7 +21,7 @@ module.exports.cntUploadedFiles = function(request) {
     if (!this.exists(request.files)) 
         return 0;
 
-    let cnt = 0;
+    var cnt = 0;
     Object.keys(request.files).forEach(function (item) {
         if (Array.isArray(request.files[item])) 
             cnt += request.files[item].length;
@@ -58,7 +58,7 @@ module.exports.getUploadedFilesAsArray = function(request, handleName, expanded)
         return [];
 
     // get objects
-    let data = request.files[handleName];
+    var data = request.files[handleName];
     // if no array, convert to array
     if (!Array.isArray(data)) 
         data = [data];
@@ -68,7 +68,7 @@ module.exports.getUploadedFilesAsArray = function(request, handleName, expanded)
         
         data[x].name = data[x].name.replace(/ /g, '_');
 
-        let ext = this.getExtension(data[x].name);
+        var ext = this.getExtension(data[x].name);
 
         if (expanded) {
             data[x].nameOnly = this.getNameOnly(data[x].name);
@@ -88,12 +88,12 @@ module.exports.getUploadedFilesAsArray = function(request, handleName, expanded)
 // returns empty array if nothing found
 // also fixes filename if contains spaces
 module.exports.getAllUplodedFilesAsArray = function(request, expanded) {
-    let handles = this.getFileHandles(request);
+    var handles = this.getFileHandles(request);
 
-    let arr = [];
+    var arr = [];
     for (i = 0; i < handles.length; i++) {
 
-        let data = request.files[handles[i]];
+        var data = request.files[handles[i]];
 
         if (!Array.isArray(data)) 
             data = [ data ];
@@ -102,7 +102,7 @@ module.exports.getAllUplodedFilesAsArray = function(request, expanded) {
 
             data[x].name = data[x].name.replace(/ /g, '_');
 
-            let ext = this.getExtension(data[x].name);
+            var ext = this.getExtension(data[x].name);
 
             if (expanded) {
                 data[x].nameOnly = this.getNameOnly(data[x].name);
@@ -133,7 +133,7 @@ module.exports.getExtension = function(fileName) {
     if (!this.exists(fileName)) 
         return '';
 
-    let idx = fileName.lastIndexOf('.');
+    var idx = fileName.lastIndexOf('.');
     if (idx == -1) 
         return '';
 
@@ -147,7 +147,7 @@ module.exports.getNameOnly = function(fileName) {
     if (!this.exists(fileName)) 
         return '';
 
-    let idx = fileName.lastIndexOf('.');
+    var idx = fileName.lastIndexOf('.');
     if (idx == -1) 
         return fileName;
 
@@ -197,13 +197,13 @@ module.exports.createRandomFilename = function(fileNameLength, extension) {
     if (fileNameLength < 4) 
         fileNameLength = 4;
 
-    let result = [];
-    let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = [];
+    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for ( i = 0; i < fileNameLength; i++ ) {
         result.push(alphabet.charAt(Math.floor(Math.random() * alphabet.length)));
     }
 
-    let randomName = result.join('');
+    var randomName = result.join('');
     if (this.exists(extension)) 
         randomName += '.' + extension;
     

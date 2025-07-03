@@ -11,9 +11,9 @@ class UserDao {
     }
 
     loadById(Matnr) {
-        let sql = 'SELECT * FROM User WHERE Matnr=?';
-        let statement = this._conn.prepare(sql);
-        let result = statement.get(Matnr);
+        var sql = 'SELECT * FROM User WHERE Matnr=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(Matnr);
 
         if (helper.isUndefined(result))
             throw new Error('No Record (User) found by Matnr=' + Matnr);
@@ -22,9 +22,9 @@ class UserDao {
     }
  
     loadAll() {
-        let sql = 'SELECT * FROM User';
-        let statement = this._conn.prepare(sql);
-        let result = statement.all();
+        var sql = 'SELECT * FROM User';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
@@ -32,34 +32,10 @@ class UserDao {
         return result;
     }
 
-    loadProfile(matnr) {
-        let sql = 'SELECT UserToModul.Note, Modul.Name, Modul.Credits FROM UserToModul ' +
-            'LEFT JOIN Modul ON UserToModul.Modul_id = Modul.id ' +
-            'WHERE UserToModul.User_Matnr=?'
-
-        let statement = this._conn.prepare(sql);
-        let result = {}
-        result.grades = statement.all(matnr);
-
-        sql = 'SELECT AVG(UserToModul.Note) AS Durchschnitt, SUM(Modul.Credits) AS Creditsumme FROM UserToModul ' +
-            'LEFT JOIN Modul ON UserToModul.Modul_id = Modul.id ' +
-            'WHERE UserToModul.User_Matnr=?'
-
-        statement = this._conn.prepare(sql);
-        result.avg_sum = statement.get(matnr);
-        result.user = this.loadById(matnr);
-
-        //TODO Fehlerbehandlung evtl
-
-        console.log(result)
-
-        return result;
-    }
-
     exists(Matnr) {
-        let sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
-        let statement = this._conn.prepare(sql);
-        let result = statement.get(Matnr);
+        var sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(Matnr);
 
         if (result.cnt == 1)
             return true;
@@ -69,11 +45,10 @@ class UserDao {
 
 
     hasaccess(Matnr, Passwort) {
-        console.log('Service User: Client requested hasacces');
-        let sql = 'SELECT Matnr FROM User WHERE Matnr=? AND Passwort=?';
-        let statement = this._conn.prepare(sql);
-        let params = [Matnr, Passwort];
-        let result = statement.get(params);
+        var sql = 'SELECT Matnr FROM User WHERE Matnr=? AND Passwort=?';
+        var statement = this._conn.prepare(sql);
+        var params = [Matnr, Passwort];
+        var result = statement.get(params);
 
         if (helper.isUndefined(result)) 
             throw new Error('User has no access');
@@ -81,13 +56,13 @@ class UserDao {
         return this.loadById(result.Matnr);
     }
 
-    create(Matnr = null, Vorname = '', Nachname = '', Passwort = '') {
+    create(Matnr = null, Vorname = '', Nachname = '', Passwort = '',Salt='') {
         //TODO:
         //hashpasswort and store in db
-        let sql = 'INSERT INTO User (Matnr,Vorname,Nachname,Passwort) VALUES (?,?,?,?)';
-        let statement = this._conn.prepare(sql);
-        let params = [Matnr, Vorname, Nachname, Passwort];
-        let result = statement.run(params);
+        var sql = 'INSERT INTO User (Matnr,Vorname,Nachname,PasswdHash,Salt) VALUES (?,?,?,?,?)';
+        var statement = this._conn.prepare(sql);
+        var params = [Matnr, Vorname, Nachname, Passwort,Salt];
+        var result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Could not insert new Record. Data: ' + params);
@@ -99,15 +74,15 @@ class UserDao {
         //TODO:
         //hashpasswort and store in db
         if (helper.isNull(neuespasswort)) {
-            let sql = 'UPDATE User SET Vorname=?, Nachname=? WHERE Matnr=?';
-            let statement = this._conn.prepare(sql);
-            let params = [Vorname, Nachname, Matnr];
+            var sql = 'UPDATE User SET Vorname=?, Nachname=? WHERE Matnr=?';
+            var statement = this._conn.prepare(sql);
+            var params = [Vorname, Nachname, Matnr];
         } else {
-            let sql = 'UPDATE User SET Vorname=?, Nachname=?, Passwort=? WHERE Matnr=?';
-            let statement = this._conn.prepare(sql);
-            let params = [Vorname, Nachname, neuespasswort, Matnr];
+            var sql = 'UPDATE User SET Vorname=?, Nachname=?, Passwort=? WHERE Matnr=?';
+            var statement = this._conn.prepare(sql);
+            var params = [Vorname, Nachname, neuespasswort, Matnr];
         }
-        let result = statement.run(params);
+        var result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
@@ -117,9 +92,9 @@ class UserDao {
 
     delete(Matnr) {
         try {
-            let sql = 'DELETE FROM User WHERE Matnr=?';
-            let statement = this._conn.prepare(sql);
-            let result = statement.run(Matnr);
+            var sql = 'DELETE FROM User WHERE Matnr=?';
+            var statement = this._conn.prepare(sql);
+            var result = statement.run(Matnr);
 
             if (result.changes != 1)
                 throw new Error('Could not delete Record by Matnr=' + Matnr);
@@ -128,37 +103,6 @@ class UserDao {
         } catch (ex) {
             throw new Error('Could not delete Record by Matnr=' + Matnr + '. Reason: ' + ex.message);
         }
-    }
-
-    loadGrade(modul_id, matnr) {
-        console.log("GRADE")
-        let sql ='SELECT Note FROM UserToModul ' +
-            'WHERE User_Matnr = ? ' +
-            'AND Modul_id = ?';
-
-        let statement = this._conn.prepare(sql);
-
-        let result = statement.get(parseInt(matnr), parseInt(modul_id));
-
-        if (helper.isUndefined(result))
-            return null
-
-        console.log(result)
-
-        return result.Note
-    }
-
-    saveGrade(modul_id, matnr, grade) {
-
-        let sql = 'INSERT INTO UserToModul (User_Matnr,Modul_id,Note) VALUES (?,?,?)';
-        let statement = this._conn.prepare(sql);
-        let params = [matnr, modul_id, grade];
-        let result = statement.run(params);
-
-        if (result.changes != 1)
-            throw new Error('Could not insert new Record. Data: ' + params);
-
-        return true;
     }
 
     toString() {
