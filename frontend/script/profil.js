@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function(){
     getUser();
 })
 
-window.onload = function (){};
-
 function getUser(){
     ajaxGet(`http://localhost:8000/api/user/profil`, (err, data) => {
         if (err) {
@@ -48,7 +46,53 @@ function getUser(){
             table.appendChild(zeile);
         }
 
-        document.getElementById('durchschnitt').textContent = parseFloat(data.avg_sum.Durchschnitt).toFixed(1);
-        document.getElementById('credits').textContent = data.avg_sum.Creditsumme;
+        document.getElementById('durchschnitt').textContent = parseFloat(data.avg_sum.Durchschnitt).toFixed(1) || '--';
+        document.getElementById('credits').textContent = data.avg_sum.Creditsumme || 0;
+
+        document.getElementById("upper-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const Vorname = document.getElementById('pvname').value;
+            const Nachname = document.getElementById('pnname').value;
+            const Passwort = document.getElementById('password').value;
+            const Passwort_Wiederholung = document.getElementById('password-repeat').value;
+
+            if (Vorname.trim() === '') {
+                alert('Bitte geben Sie einen Vornamen an.');
+                return;
+            }
+            if (Nachname.trim() === '') {
+                alert('Bitte geben Sie einen Nachnamen an.');
+                return;
+            }
+            if (Passwort.trim() === '') {
+                alert('Bitte geben Sie ihr Passwort an.');
+                return;
+            }
+            if (Passwort_Wiederholung.trim() === '') {
+                alert('Bitte wiederholen sie ihr Passwort.');
+                return;
+            }
+            if (Passwort_Wiederholung.trim() !== Passwort.trim()) {
+                alert('Passwörter nicht identisch!')
+            }
+
+            const payload = {
+                Vorname: Vorname,
+                Nachname: Nachname,
+                Passwort: Passwort,
+            };
+
+            console.log(payload);
+
+            ajaxPost('http://localhost:8000/api/user/profil/update', payload, (err, response) => {
+                if (err) {
+                    console.error(err);
+                    alert('Fehler beim Speichern der Benutzerdaten.');
+                    return;
+                }
+            });
+            location.reload();
+        });
     });
 }

@@ -56,6 +56,20 @@ class UserDao {
         return result;
     }
 
+    updateProfil(Matnr, Vorname, Nachname, Passwort) {
+        let sql = 'UPDATE User SET Vorname=?, Nachname=?, Passwort=? WHERE Matnr=?';
+        let statement = this._conn.prepare(sql);
+        let params = [Vorname, Nachname, Passwort, Matnr];
+        let result = statement.run(params);
+
+        console.log(statement)
+
+        if (result.changes != 1)
+            throw new Error('Update failed for User with Matnr=' + Matnr);
+
+        return true;
+    }
+
     exists(Matnr) {
         let sql = 'SELECT COUNT(Matnr) AS cnt FROM User WHERE Matnr=?';
         let statement = this._conn.prepare(sql);

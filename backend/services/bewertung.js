@@ -103,7 +103,6 @@ serviceRouter.post('/bewertung', function(request, response) {
         try {
 
             if(bewertungDao.exists(matnr, request.body.Modul_id)){
-                console.log("UPDATE")
                 let obj = bewertungDao.update(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
                 let obj2 = userDao.updateGrade(request.body.Modul_id, matnr, request.body.Note);
                 console.log('Service bewertung and grade: Records updated');
