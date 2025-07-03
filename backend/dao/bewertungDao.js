@@ -88,18 +88,17 @@ class BewertungDao {
         let result = statement.run(params);
 
         if (result.changes != 1)
-            throw new Error('Insert failed for Bewertung with User_Matnr=' + User_Matnr + ', Modul_id=' + Modul_id);
+            throw new Error('Update failed for Bewertung with User_Matnr=' + User_Matnr + ', Modul_id=' + Modul_id);
 
         return true;
     }
 
     exists(matnr, modul_id) {
         console.log('existance check')
-        let sql = 'SELECT COUNT(1) FROM Bewertung WHERE User_Matnr=? AND Modul_id=?';
+        let sql = 'SELECT COUNT(1) as val FROM Bewertung WHERE User_Matnr=? AND Modul_id=?';
         let statement = this._conn.prepare(sql);
         let result = statement.get(matnr, modul_id);
-
-        return !helper.isUndefined(result);
+        return result.val != 0;
     }
  
     toString() {

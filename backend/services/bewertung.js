@@ -91,10 +91,15 @@ serviceRouter.post('/bewertung', function(request, response) {
 
         try {
 
+            console.log(bewertungDao.exists(matnr, request.body.Modul_id))
+
             if(bewertungDao.exists(matnr, request.body.Modul_id)){
+                console.log("UPDATE")
                 let obj = bewertungDao.update(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
-                console.log('Service bewertung: Record updated');
+                let obj2 = userDao.updateGrade(request.body.Modul_id, matnr, request.body.Note);
+                console.log('Service bewertung and grade: Records updated');
             } else {
+                console.log("CREATE")
                 let obj = bewertungDao.insert(matnr, request.body.Score, request.body.Inhalt, request.body.Modul_id);
                 console.log('Service bewertung: Record inserted');
                 let obj2 = userDao.saveGrade(request.body.Modul_id, matnr, request.body.Note);
