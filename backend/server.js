@@ -5,7 +5,7 @@
 
 
 /////////////////
-// workaround / bugfix for linux systems
+// workaround / bugfix for linux systems>
 Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 /////////////////
 
@@ -37,7 +37,11 @@ try {
     app.locals.dbConnection = dbConnection;
 
     console.log('Binding middleware...');
-    app.use(express.static(__dirname + '/public'))
+    // app.use(express.static(__dirname + '/public'))
+
+    const path = require('path');
+   app.use(express.static(path.join(__dirname, '../frontend')));
+
     app.use(fileUpload({
         createParentPath: true,
         limits: {
@@ -59,16 +63,19 @@ try {
     const TOPLEVELPATH = '/api';
     console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
     
-    var serviceRouter = require('./services/bewertung.js');
+    let serviceRouter = require('./services/bewertung.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    var serviceRouter = require('./services/dozent.js');
+    serviceRouter = require('./services/dozent.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    var serviceRouter = require('./services/modul.js');
+    serviceRouter = require('./services/modul.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    var serviceRouter = require('./services/user.js');
+    serviceRouter = require('./services/user.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/auth.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
     // send default error message if no matching endpoint found
@@ -81,7 +88,7 @@ try {
     // starting the Web Server
     console.log('\nBinding Port and starting Webserver...');
 
-    var webServer = app.listen(HTTP_PORT, () => {
+    app.listen(HTTP_PORT, '127.0.0.1', () => {
         console.log('Listening at localhost, port ' + HTTP_PORT);
         console.log('\nUsage: http://localhost:' + HTTP_PORT + TOPLEVELPATH + "/SERVICENAME/SERVICEMETHOD/....");
         console.log('\nVersion 4.3.0, 26.06.2024\nSommersemester 2024, HS Albstadt-Sigmaringen, INF');

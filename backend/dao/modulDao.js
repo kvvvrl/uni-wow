@@ -1,4 +1,7 @@
 const helper = require('../helper.js');
+const DozentDao = require('../dao/dozentDao.js');
+const UserDao = require('../dao/userDao.js');
+const BewertungDao = require('./bewertungDao.js');
 
 class ModulDao {
 
@@ -10,39 +13,68 @@ class ModulDao {
         return this._conn;
     }
 
-    loadById(id) {
-        var sql = 'SELECT * FROM Modul WHERE id=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.get(id);
+    loadById(id, matnr) {
+        const dozentDao = new DozentDao(this._conn);
+        const bewertungDao = new BewertungDao(this._conn);
+        const userDao = new UserDao(this._conn);
+
+        let sql = 'SELECT * FROM Modul WHERE id=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.get(id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
 
+        result.UserData = {
+            Note: userDao.loadGrade(id, matnr),
+            Bewertung: bewertungDao.loadByMatnrAndModule(matnr, id)
+        }
+
+        result.Verantwortlicher = dozentDao.loadById(result.Verantwortlicher);
+        result.Score = bewertungDao.loadScoreById(result.id) || 0;
         return result;
     }
 
     loadByVerantwortlicher(id) {
-        var sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.all(id);
+        const bewertungDao = new BewertungDao(this._conn);
+        let sql = 'SELECT * FROM Modul WHERE verantwortlicher=?';
+        let statement = this._conn.prepare(sql);
+        let result = statement.all(id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record (Modul) found by id=' + id);
 
+        result.forEach(item => {
+            item.Score = bewertungDao.loadScoreById(item.id) || 0;
+        });
+
         return result;
     }
 
-    loadAll() {
-        var sql = 'SELECT * FROM Modul';
-        var statement = this._conn.prepare(sql);
-        var result = statement.all();
+    loadAll(matNr) {
+        const dozentDao = new DozentDao(this._conn);
+        const bewertungDao = new BewertungDao(this._conn);
+        let sql =    'SELECT Modul.*, Note FROM Modul ' +
+            'LEFT JOIN (' +
+            'SELECT * from UserToModul WHERE User_Matnr = ?)' +
+            'UserToModul ON Modul.id = UserToModul.Modul_id';
+
+        let statement = this._conn.prepare(sql);
+        let result = statement.all(matNr);
 
         if (helper.isArrayEmpty(result)) 
             return [];
 
+        result.forEach(item => {
+            item.Verantwortlicher = dozentDao.loadById(item.Verantwortlicher);
+        });
+        result.forEach(item => {
+            item.Score = bewertungDao.loadScoreById(item.id) || 0;
+        });
+
         return result;
     }
- 
+
     toString() {
         console.log('modulDao [_conn=' + this._conn + ']');
     }

@@ -115,3 +115,32 @@ footer a:hover {
 .ueberschrift {
     margin: 1vh;
 }
+/* === Allgemein für alle Sterne === */
+.fa-star,
+.fa-star-half-o{
+	color: orange;
+}
+
+/* === Anzeige-Sterne (Kommentare) === */
+.bewertungsvalue .fa-star,
+.bewertungsvalue .fa-star-half-o {
+	color: orange;
+}
+.bewertungsvalue .fa-star-o {
+	color: gray;
+}
+
+/* Geklickte Sterne */
+.star-rating .fa-star.checked {
+	color: orange;
+}
+
+/* Hover-Farbe nur auf interaktive Sterne anwenden */
+.star-rating .fa-star:hover
+{
+	color: orange;
+}
+
+.star-rating .fa-star {
+	color:  gray ;
+}
