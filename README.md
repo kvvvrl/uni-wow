@@ -4,7 +4,7 @@
 | --- |
 | Karl | 
 | Milan | 
-| AAron |
+| Aaron |
 | Christian |
 
 > Finales Projekt für den Kurs Web-Anwendung 2 im 4. Semester
